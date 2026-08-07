@@ -24,6 +24,7 @@
     </div>
     <nav class="tabs">
       <button type="button" class="tab-btn active" data-view="find">Find actions</button>
+      <button type="button" class="tab-btn" data-view="events">Events</button>
       <button type="button" class="tab-btn" data-view="my">
         My actions <span class="badge-count" id="my-count">0</span>
       </button>
@@ -104,12 +105,17 @@
   </section>
 </section>
 
+<!-- ============ EVENTS VIEW ============ -->
+<section id="view-events" hidden>
+  <div class="evwrap" id="evContent"></div>
+</section>
+
 <!-- ============ MY ACTIONS VIEW ============ -->
 <section id="view-my" class="wrap" hidden style="padding-top: 40px;">
   <div class="results-head">
     <h2>My actions</h2>
   </div>
-  <div id="my-actions-list" class="my-actions-list results-grid"></div>
+  <div id="my-actions-list" class="my-actions-list"></div>
 </section>
 
 <footer>
@@ -120,6 +126,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data.js"></script>
+<script src="events.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
