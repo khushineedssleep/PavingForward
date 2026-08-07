@@ -24,6 +24,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
 
 body {
   margin: 0;
@@ -147,19 +148,29 @@ nav.tabs button:hover { color: var(--ink); }
   border-radius: var(--radius);
   overflow: hidden;
 }
-.search-row input {
+.search-row select {
   flex: 1;
   border: 2px solid var(--ink);
   border-right: none;
-  border-radius: var(--radius) 0 0 var(--radius);
   padding: 18px 20px;
   font-family: var(--body);
-  font-size: 17px;
+  font-weight: 600;
+  font-size: 16px;
   color: var(--ink);
   background: #fff;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23101A2B' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 40px;
 }
-.search-row input:focus {
-  outline: none;
+.search-row select:first-of-type {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.search-row select + select {
+  border-left: 1px solid var(--line-strong);
 }
 .search-row button {
   font-family: var(--body);
@@ -175,7 +186,7 @@ nav.tabs button:hover { color: var(--ink); }
 }
 .search-row button:hover { background: #1c2c47; }
 
-.search-row input:focus-visible,
+.search-row select:focus-visible,
 .search-row button:focus-visible,
 .pill:focus-visible,
 .tab-btn:focus-visible,
@@ -414,7 +425,9 @@ footer {
 
 @media (max-width: 640px) {
   .search-row { flex-direction: column; box-shadow: none; }
-  .search-row input { border-radius: var(--radius) var(--radius) 0 0; border-right: 2px solid var(--ink); }
+  .search-row select { border-radius: 0; border-right: 2px solid var(--ink); }
+  .search-row select:first-of-type { border-radius: var(--radius) var(--radius) 0 0; }
+  .search-row select + select { border-left: none; border-top: 1px solid var(--line-strong); }
   .search-row button { border-radius: 0 0 var(--radius) var(--radius); padding: 16px; }
   #map { height: 380px; }
 }
