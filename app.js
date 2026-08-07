@@ -45,7 +45,7 @@ function runMatch() {
 const WHERE_LABEL = {
   in_person: "In person",
   remote: "From anywhere",
-  either: "Flexible"
+  either: "Your choice"
 };
 
 function orgWebsite(org) {
@@ -58,34 +58,66 @@ function actionKey(org, action) {
   return `${org.id}-${action.id}`;
 }
 
-function renderMatches(matches, cause, timeLabel) {
-  matches = matches.slice(0, 8);
+// Results are grouped into these buckets for display, regardless of
+// which time filter is active — a broad filter (or "any") naturally
+// spans several of them, a narrow filter collapses to just one.
+const TIME_BUCKETS = [
+  { max: 5, label: "a couple of minutes" },
+  { max: 20, label: "about 15 minutes" },
+  { max: 40, label: "about 30 minutes" },
+  { max: 100, label: "about an hour" },
+  { max: 300, label: "an afternoon" },
+  { max: Infinity, label: "a full day" }
+];
 
-  document.getElementById("match-count").textContent = matches.length
-    ? `${matches.length} match${matches.length === 1 ? "" : "es"}`
+function bucketFor(minutes) {
+  return TIME_BUCKETS.find((b) => minutes <= b.max);
+}
+
+const MAX_RESULTS = 16;
+
+function renderMatches(matches, cause, timeLabel) {
+  const total = matches.length;
+  const shown = matches.slice(0, MAX_RESULTS);
+
+  document.getElementById("match-count").textContent = total
+    ? `${total} match${total === 1 ? "" : "es"}${total > shown.length ? ` (showing ${shown.length})` : ""}`
     : "";
 
   const causeText = cause === "any" ? "any cause" : cause;
   const timeText = timeLabel ? `under ${timeLabel}` : "any amount of time";
   document.getElementById("we-heard").textContent = `We heard: ${causeText} · ${timeText}`;
 
-  const divider = document.getElementById("time-divider");
-  const dividerLabel = document.getElementById("time-divider-label");
-  dividerLabel.textContent = timeLabel ? `If you've got ${timeLabel}` : "";
-  divider.hidden = !timeLabel;
+  const container = document.getElementById("results-container");
+  container.innerHTML = "";
 
-  const results = document.getElementById("results");
-  results.innerHTML = "";
-
-  if (matches.length === 0) {
+  if (shown.length === 0) {
     const note = document.createElement("p");
     note.className = "empty-note";
     note.textContent = "No matches for that combination yet — try a different cause or more time.";
-    results.appendChild(note);
+    container.appendChild(note);
     return;
   }
 
-  matches.forEach(({ org, action }) => results.appendChild(actionCard(org, action)));
+  // Group the (already time-sorted) matches into buckets, preserving order.
+  const groups = new Map();
+  shown.forEach((m) => {
+    const bucket = bucketFor(m.action.minutes);
+    if (!groups.has(bucket.label)) groups.set(bucket.label, []);
+    groups.get(bucket.label).push(m);
+  });
+
+  groups.forEach((items, label) => {
+    const divider = document.createElement("div");
+    divider.className = "time-divider";
+    divider.innerHTML = `<h3>If you've got ${label}</h3><div class="rule"></div>`;
+    container.appendChild(divider);
+
+    const grid = document.createElement("div");
+    grid.className = "results-grid";
+    items.forEach(({ org, action }) => grid.appendChild(actionCard(org, action)));
+    container.appendChild(grid);
+  });
 }
 
 function actionCard(org, action) {
@@ -102,7 +134,7 @@ function actionCard(org, action) {
     <p class="org-name">${org.name}</p>
     <p class="desc">${action.detail}</p>
     <div class="card-actions">
-      <button type="button" class="im-in ${saved ? "added" : ""}">${saved ? "Added \u2713" : "I'm in"}</button>
+      <button type="button" class="im-in ${saved ? "added" : ""}">${saved ? "Done \u2713" : "I'm in"}</button>
       <a href="${orgWebsite(org)}" target="_blank" rel="noopener">Their site &#8599;</a>
     </div>
   `;
@@ -112,7 +144,7 @@ function actionCard(org, action) {
     const btn = e.currentTarget;
     const nowSaved = isSaved(org, action);
     btn.classList.toggle("added", nowSaved);
-    btn.textContent = nowSaved ? "Added \u2713" : "I'm in";
+    btn.textContent = nowSaved ? "Done \u2713" : "I'm in";
     updateMyCount();
     if (document.getElementById("view-my").hidden === false) renderMyActions();
   });
