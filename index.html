@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chicago Civic Match — find a small task that needs you</title>
-<meta name="description" content="Tell us who you want to help and how much time you have. We'll match you with a small, real task from a Chicago nonprofit." />
+<title>Show Up Chicago — tell us how you want to help</title>
+<meta name="description" content="Type how you want to help and how much time you've got. Get real, small Chicago volunteer actions back." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -18,55 +18,84 @@
 
 <header class="masthead">
   <div class="wrap">
-    <div class="mark">Civic<span>Match</span> Chicago</div>
-    <div class="tagline">A directory of small, real tasks — matched to your time</div>
+    <div class="brand">
+      <!-- LOGO SLOT: to use a PNG, drop logo.png in this folder and
+           replace the line below with:
+           <img src="logo.png" alt="Show Up Chicago" class="brand-logo-img"> -->
+      <span class="brand-star">&#9733;</span>
+      <span class="brand-name">Show Up <span class="accent">Chicago</span></span>
+    </div>
+    <nav class="tabs">
+      <button type="button" class="tab-btn active" data-view="find">Find actions</button>
+      <button type="button" class="tab-btn" data-view="my">
+        My actions <span class="badge-count" id="my-count">0</span>
+      </button>
+    </nav>
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <h1>Chicago needs are small.<br>So is the ask. <em>Find yours.</em></h1>
+<!-- ============ FIND ACTIONS VIEW ============ -->
+<section id="view-find">
+  <div class="hero wrap">
+    <h1>Tell us how you want to help.<br><span class="line-red">We'll hand you the plan.</span></h1>
     <p class="lede">
-      Nonprofits across the city have real, small tasks piling up — a translation, a delivery run,
-      a Saturday with kids. Tell us who you want to help and how much time you've got.
+      Type it like you'd say it. Two minutes or two hours, from your couch or in your
+      neighborhood. Every result is a real thing you can do today.
     </p>
 
-    <form class="ledger-card" id="match-form">
-      <div class="field">
-        <label for="intent">Who do you want to help, and with what?</label>
-        <textarea id="intent" rows="3" placeholder="e.g. I want to help kids with reading, or work outdoors with plants"></textarea>
-      </div>
-      <div class="field">
-        <label for="time">How much time can you give?</label>
-        <select id="time">
-          <option value="15">15 minutes or less</option>
-          <option value="30">30 minutes or less</option>
-          <option value="60" selected>1 hour or less</option>
-          <option value="120">2 hours or less</option>
-          <option value="any">No limit — show everything</option>
-        </select>
-      </div>
-      <button type="submit" class="submit">Find my match</button>
+    <form class="search-row" id="match-form">
+      <input type="text" id="intent" placeholder="I've got 2 minutes" autocomplete="off" />
+      <button type="submit">Find my actions</button>
     </form>
 
-    <div id="results"></div>
+    <div class="pills">
+      <button type="button" class="pill" data-q="I've got 2 minutes">I've got 2 minutes</button>
+      <button type="button" class="pill" data-q="Help immigrants">Help immigrants</button>
+      <button type="button" class="pill" data-q="Free Saturday afternoon">Free Saturday afternoon</button>
+      <button type="button" class="pill" data-q="Something with animals">Something with animals</button>
+      <button type="button" class="pill" data-q="Use my job skills">Use my job skills</button>
+      <button type="button" class="pill" data-q="Help kids, from home">Help kids, from home</button>
+    </div>
   </div>
+
+  <div class="results-section wrap">
+    <div class="results-head">
+      <h2>Your action plan</h2>
+      <span class="match-count" id="match-count"></span>
+    </div>
+    <p class="we-heard" id="we-heard"></p>
+
+    <div class="time-divider" id="time-divider" hidden>
+      <h3 id="time-divider-label"></h3>
+      <div class="rule"></div>
+    </div>
+
+    <div class="results-grid" id="results"></div>
+  </div>
+
+  <section class="map-section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The map</h2>
+        <span class="coord">50 orgs, 150 actions across Chicago</span>
+      </div>
+      <div id="map"></div>
+      <p class="map-hint">Hover or tap a pin to see what that organization is working on right now.</p>
+    </div>
+  </section>
 </section>
 
-<section class="map-section">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>The Ledger</h2>
-      <div class="coord">41.8781° N, 87.6298° W — 50 orgs, 150 actions mapped</div>
-    </div>
-    <div id="map"></div>
-    <p class="map-hint">Hover or tap a pin to see what that organization is working on right now.</p>
+<!-- ============ MY ACTIONS VIEW ============ -->
+<section id="view-my" class="wrap" hidden style="padding-top: 40px;">
+  <div class="results-head">
+    <h2>My actions</h2>
   </div>
+  <div id="my-actions-list" class="my-actions-list results-grid"></div>
 </section>
 
 <footer>
   <div class="wrap">
-    Demo build — organization data is illustrative. CivicMatch Chicago, 2026.
+    Demo build — organization data is illustrative. Show Up Chicago, 2026.
   </div>
 </footer>
 
