@@ -1,12 +1,11 @@
 /**
  * data.js — Chicago Civic Match dataset
  * ------------------------------------------------
- * Generated from organizations.csv + actions.csv.
- * Each org has a list of small "actions" (real tasks),
- * each with a time cost in minutes and a mode
- * (in_person / remote / either).
+ * GENERATED FILE — do not hand-edit. Edit organizations.csv / actions.csv
+ * and re-run `python3 convert.py` instead.
  *
- * To refresh this file after editing the CSVs, re-run convert.py.
+ * Each org has a list of small "actions" (real tasks), each with a time
+ * cost in minutes and a mode (in_person / remote / either).
  */
 
 const ORGS = [
@@ -19,6 +18,7 @@ const ORGS = [
     "neighborhood": "Archer Heights",
     "multiSite": false,
     "address": "Archer Heights, Chicago, IL",
+    "website": "",
     "lat": 41.8103,
     "lng": -87.7256,
     "actions": [
@@ -63,6 +63,7 @@ const ORGS = [
     "neighborhood": "Lakeview",
     "multiSite": false,
     "address": "Lakeview, Chicago, IL",
+    "website": "",
     "lat": 41.9403,
     "lng": -87.6438,
     "actions": [
@@ -107,6 +108,7 @@ const ORGS = [
     "neighborhood": "Edgewater",
     "multiSite": false,
     "address": "Edgewater, Chicago, IL",
+    "website": "",
     "lat": 41.985,
     "lng": -87.66,
     "actions": [
@@ -151,6 +153,7 @@ const ORGS = [
     "neighborhood": "North Center",
     "multiSite": false,
     "address": "North Center, Chicago, IL",
+    "website": "",
     "lat": 41.9556,
     "lng": -87.6796,
     "actions": [
@@ -195,6 +198,7 @@ const ORGS = [
     "neighborhood": "Rogers Park",
     "multiSite": false,
     "address": "Rogers Park, Chicago, IL",
+    "website": "",
     "lat": 42.01,
     "lng": -87.6685,
     "actions": [
@@ -239,6 +243,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.89615,
     "lng": -87.6799,
     "actions": [
@@ -283,6 +288,7 @@ const ORGS = [
     "neighborhood": "North Side",
     "multiSite": false,
     "address": "North Side, Chicago, IL",
+    "website": "",
     "lat": 41.9796,
     "lng": -87.672,
     "actions": [
@@ -327,6 +333,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -371,6 +378,7 @@ const ORGS = [
     "neighborhood": "Humboldt Park",
     "multiSite": false,
     "address": "Humboldt Park, Chicago, IL",
+    "website": "",
     "lat": 41.9042,
     "lng": -87.7014,
     "actions": [
@@ -415,6 +423,7 @@ const ORGS = [
     "neighborhood": "East Garfield Park",
     "multiSite": false,
     "address": "East Garfield Park, Chicago, IL",
+    "website": "",
     "lat": 41.8814,
     "lng": -87.7086,
     "actions": [
@@ -459,6 +468,7 @@ const ORGS = [
     "neighborhood": "Humboldt Park",
     "multiSite": false,
     "address": "Humboldt Park, Chicago, IL",
+    "website": "",
     "lat": 41.9042,
     "lng": -87.7014,
     "actions": [
@@ -503,6 +513,7 @@ const ORGS = [
     "neighborhood": "Uptown",
     "multiSite": false,
     "address": "Uptown, Chicago, IL",
+    "website": "",
     "lat": 41.9664,
     "lng": -87.6551,
     "actions": [
@@ -547,6 +558,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -591,6 +603,7 @@ const ORGS = [
     "neighborhood": "West Town",
     "multiSite": false,
     "address": "West Town, Chicago, IL",
+    "website": "",
     "lat": 41.9022,
     "lng": -87.6805,
     "actions": [
@@ -635,6 +648,7 @@ const ORGS = [
     "neighborhood": "Pilsen",
     "multiSite": false,
     "address": "Pilsen, Chicago, IL",
+    "website": "",
     "lat": 41.8564,
     "lng": -87.6564,
     "actions": [
@@ -679,6 +693,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.86335,
     "lng": -87.66008,
     "actions": [
@@ -723,6 +738,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.90488,
     "lng": -87.61473,
     "actions": [
@@ -767,6 +783,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -811,6 +828,7 @@ const ORGS = [
     "neighborhood": "West Loop",
     "multiSite": false,
     "address": "West Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8853,
     "lng": -87.6522,
     "actions": [
@@ -855,6 +873,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.9189,
     "lng": -87.67371,
     "actions": [
@@ -899,6 +918,7 @@ const ORGS = [
     "neighborhood": "River North",
     "multiSite": false,
     "address": "River North, Chicago, IL",
+    "website": "",
     "lat": 41.8919,
     "lng": -87.6343,
     "actions": [
@@ -943,6 +963,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -987,6 +1008,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.87657,
     "lng": -87.67942,
     "actions": [
@@ -1031,6 +1053,7 @@ const ORGS = [
     "neighborhood": "Uptown",
     "multiSite": false,
     "address": "Uptown, Chicago, IL",
+    "website": "",
     "lat": 41.9664,
     "lng": -87.6551,
     "actions": [
@@ -1075,6 +1098,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.85828,
     "lng": -87.63186,
     "actions": [
@@ -1119,6 +1143,7 @@ const ORGS = [
     "neighborhood": "Bucktown",
     "multiSite": false,
     "address": "Bucktown, Chicago, IL",
+    "website": "",
     "lat": 41.9214,
     "lng": -87.6779,
     "actions": [
@@ -1163,6 +1188,7 @@ const ORGS = [
     "neighborhood": "West Rogers Park",
     "multiSite": false,
     "address": "West Rogers Park, Chicago, IL",
+    "website": "",
     "lat": 42.0028,
     "lng": -87.6976,
     "actions": [
@@ -1207,6 +1233,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.84099,
     "lng": -87.66252,
     "actions": [
@@ -1251,6 +1278,7 @@ const ORGS = [
     "neighborhood": "Lincoln Park",
     "multiSite": false,
     "address": "Lincoln Park, Chicago, IL",
+    "website": "",
     "lat": 41.9214,
     "lng": -87.6513,
     "actions": [
@@ -1295,6 +1323,7 @@ const ORGS = [
     "neighborhood": "River North",
     "multiSite": false,
     "address": "River North, Chicago, IL",
+    "website": "",
     "lat": 41.8919,
     "lng": -87.6343,
     "actions": [
@@ -1339,6 +1368,7 @@ const ORGS = [
     "neighborhood": "Uptown",
     "multiSite": false,
     "address": "Uptown, Chicago, IL",
+    "website": "",
     "lat": 41.9664,
     "lng": -87.6551,
     "actions": [
@@ -1383,6 +1413,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.89709,
     "lng": -87.62791,
     "actions": [
@@ -1427,6 +1458,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -1471,6 +1503,7 @@ const ORGS = [
     "neighborhood": "Museum Campus",
     "multiSite": false,
     "address": "Museum Campus, Chicago, IL",
+    "website": "",
     "lat": 41.8623,
     "lng": -87.6167,
     "actions": [
@@ -1515,6 +1548,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.85844,
     "lng": -87.62347,
     "actions": [
@@ -1559,6 +1593,7 @@ const ORGS = [
     "neighborhood": "Uptown",
     "multiSite": false,
     "address": "Uptown, Chicago, IL",
+    "website": "",
     "lat": 41.9664,
     "lng": -87.6551,
     "actions": [
@@ -1603,6 +1638,7 @@ const ORGS = [
     "neighborhood": "Humboldt Park",
     "multiSite": false,
     "address": "Humboldt Park, Chicago, IL",
+    "website": "",
     "lat": 41.9042,
     "lng": -87.7014,
     "actions": [
@@ -1647,6 +1683,7 @@ const ORGS = [
     "neighborhood": "Pilsen",
     "multiSite": false,
     "address": "Pilsen, Chicago, IL",
+    "website": "",
     "lat": 41.8564,
     "lng": -87.6564,
     "actions": [
@@ -1691,6 +1728,7 @@ const ORGS = [
     "neighborhood": "West Loop",
     "multiSite": false,
     "address": "West Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8853,
     "lng": -87.6522,
     "actions": [
@@ -1735,6 +1773,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.91145,
     "lng": -87.68175,
     "actions": [
@@ -1779,6 +1818,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.91112,
     "lng": -87.61259,
     "actions": [
@@ -1823,6 +1863,7 @@ const ORGS = [
     "neighborhood": "Bronzeville",
     "multiSite": false,
     "address": "Bronzeville, Chicago, IL",
+    "website": "",
     "lat": 41.8175,
     "lng": -87.6173,
     "actions": [
@@ -1867,6 +1908,7 @@ const ORGS = [
     "neighborhood": "Lincoln Square",
     "multiSite": false,
     "address": "Lincoln Square, Chicago, IL",
+    "website": "",
     "lat": 41.9686,
     "lng": -87.6895,
     "actions": [
@@ -1911,6 +1953,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -1955,6 +1998,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.86922,
     "lng": -87.66685,
     "actions": [
@@ -1999,6 +2043,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -2043,6 +2088,7 @@ const ORGS = [
     "neighborhood": "Lakeview",
     "multiSite": false,
     "address": "Lakeview, Chicago, IL",
+    "website": "",
     "lat": 41.9403,
     "lng": -87.6438,
     "actions": [
@@ -2087,6 +2133,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
@@ -2131,6 +2178,7 @@ const ORGS = [
     "neighborhood": "Chicagoland",
     "multiSite": true,
     "address": "Chicagoland (multiple sites)",
+    "website": "",
     "lat": 41.92475,
     "lng": -87.64874,
     "actions": [
@@ -2175,6 +2223,7 @@ const ORGS = [
     "neighborhood": "Loop",
     "multiSite": false,
     "address": "Loop, Chicago, IL",
+    "website": "",
     "lat": 41.8827,
     "lng": -87.6298,
     "actions": [
