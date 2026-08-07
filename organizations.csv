@@ -1,0 +1,51 @@
+org_id,org_name,description,who_they_serve,cause_area,neighborhood,address
+1,Greater Chicago Food Depository,Food bank supplying pantries and meal programs across Cook County.,Food-insecure families,Hunger,Archer Heights,"Archer Heights, Chicago, IL"
+2,Nourishing Hope,Food pantries plus free mental health and social services.,Food-insecure Chicagoans,Hunger,Lakeview,"Lakeview, Chicago, IL"
+3,Care for Real,Food and clothing pantry serving the far North Side.,Neighbors in need,Hunger,Edgewater,"Edgewater, Chicago, IL"
+4,Common Pantry,"Chicago's longest-running food pantry, North Center.",Hungry North Side residents,Hunger,North Center,"North Center, Chicago, IL"
+5,A Just Harvest,Community kitchen serving daily hot meals in Rogers Park.,Hungry Rogers Park residents,Hunger,Rogers Park,"Rogers Park, Chicago, IL"
+6,Food Rescue US - Chicago,Rescues surplus food and delivers it to those who need it.,Hungry Chicagoans,Hunger,Chicagoland,Chicagoland (multiple sites)
+7,The Night Ministry,"Mobile outreach with housing, health care, and human connection.",People experiencing homelessness,Homelessness,North Side,"North Side, Chicago, IL"
+8,Chicago Coalition for the Homeless,Advocacy and organizing to end homelessness.,Unhoused Chicagoans,Homelessness,Loop,"Loop, Chicago, IL"
+9,La Casa Norte,Housing and wraparound services for youth and families.,Youth and families facing homelessness,Homelessness,Humboldt Park,"Humboldt Park, Chicago, IL"
+10,Breakthrough,"Housing, food, and workforce support on the West Side.",West Side neighbors in crisis,Homelessness,East Garfield Park,"East Garfield Park, Chicago, IL"
+11,Franciscan Outreach,Emergency shelter and daily meals.,People experiencing homelessness,Homelessness,Humboldt Park,"Humboldt Park, Chicago, IL"
+12,RefugeeOne,Resettles refugees and helps them build new lives.,Refugees and asylees,Immigration,Uptown,"Uptown, Chicago, IL"
+13,National Immigrant Justice Center,Legal aid and advocacy for immigrants.,Immigrants and asylum seekers,Immigration,Loop,"Loop, Chicago, IL"
+14,Erie Neighborhood House,Education and support for immigrant families.,Immigrant families,Immigration,West Town,"West Town, Chicago, IL"
+15,Instituto del Progreso Latino,Education and workforce training for Latino immigrants.,Latino immigrants,Immigration,Pilsen,"Pilsen, Chicago, IL"
+16,World Relief Chicagoland,Refugee resettlement and welcome across the region.,Refugees,Immigration,Chicagoland,Chicagoland (multiple sites)
+17,Cradles to Crayons,Provides essentials to kids living in poverty.,Children living in poverty,Youth,Chicagoland,Chicagoland (multiple sites)
+18,After School Matters,"Paid teen programs in arts, sports, and STEM.",Chicago teens,Youth,Loop,"Loop, Chicago, IL"
+19,Open Books,Literacy programs powered by a used bookstore.,Young readers,Youth,West Loop,"West Loop, Chicago, IL"
+20,Chicago HOPES for Kids,Tutoring and enrichment for kids in shelters.,Kids living in shelters,Youth,Chicagoland,Chicagoland (multiple sites)
+21,Marwen,Free art education for under-resourced youth.,Under-resourced youth,Arts,River North,"River North, Chicago, IL"
+22,Mikva Challenge,Civic education that puts young people in the action.,Young people,Civic,Loop,"Loop, Chicago, IL"
+23,NAMI Chicago,"Mental health support, education, and a helpline.",People affected by mental illness,Health,Chicagoland,Chicagoland (multiple sites)
+24,Howard Brown Health,LGBTQ+ focused health care and services.,LGBTQ+ Chicagoans,Health,Uptown,"Uptown, Chicago, IL"
+25,Heartland Alliance,"Health, housing, and human rights for the marginalized.",Poor and marginalized people,Health,Chicagoland,Chicagoland (multiple sites)
+26,Little Brothers - Friends of the Elderly,Companionship and support for isolated seniors.,Isolated seniors,Seniors,Bucktown,"Bucktown, Chicago, IL"
+27,CJE SeniorLife,Comprehensive services for older adults.,Older adults,Seniors,West Rogers Park,"West Rogers Park, Chicago, IL"
+28,Meals on Wheels Chicago,Meal delivery and connection for homebound seniors.,Homebound seniors,Seniors,Chicagoland,Chicagoland (multiple sites)
+29,PAWS Chicago,No-kill shelter and adoption center.,Homeless pets,Animals,Lincoln Park,"Lincoln Park, Chicago, IL"
+30,The Anti-Cruelty Society,"Shelter, adoption, and animal welfare since 1899.",Animals in need,Animals,River North,"River North, Chicago, IL"
+31,Tree House Humane Society,Cageless cat rescue and adoption.,Homeless cats,Animals,Uptown,"Uptown, Chicago, IL"
+32,Friends of the Chicago River,Protects and restores the Chicago River system.,The Chicago River and public,Environment,Chicagoland,Chicagoland (multiple sites)
+33,Openlands,Protects natural and open spaces across the region.,Chicago's natural areas,Environment,Loop,"Loop, Chicago, IL"
+34,Shedd Aquarium,"Aquatic conservation, education, and rescue.",Aquatic life and the public,Environment,Museum Campus,"Museum Campus, Chicago, IL"
+35,Between Friends,Breaks the cycle of domestic violence.,Survivors of abuse,Safety,Chicagoland,Chicagoland (multiple sites)
+36,Apna Ghar,Domestic violence services for immigrant survivors.,Immigrant survivors,Safety,Uptown,"Uptown, Chicago, IL"
+37,Connections for Abused Women and their Children,Shelter and support for survivors and kids.,Survivors and their children,Safety,Humboldt Park,"Humboldt Park, Chicago, IL"
+38,Chicago Books to Women in Prison,Sends free books to incarcerated women.,Incarcerated women,Justice,Pilsen,"Pilsen, Chicago, IL"
+39,Access Living,"Disability rights, services, and independent living.",People with disabilities,Disability,West Loop,"West Loop, Chicago, IL"
+40,Special Olympics Chicago,Year-round sports for athletes with disabilities.,Athletes with intellectual disabilities,Disability,Chicagoland,Chicagoland (multiple sites)
+41,Best Buddies Illinois,Friendship and jobs for people with disabilities.,People with intellectual and developmental disabilities,Disability,Chicagoland,Chicagoland (multiple sites)
+42,Leave No Veteran Behind,Employment and support for veterans.,Veterans,Veterans,Bronzeville,"Bronzeville, Chicago, IL"
+43,Old Town School of Folk Music,Community music education for all ages.,Music learners,Arts,Lincoln Square,"Lincoln Square, Chicago, IL"
+44,Chicago Public Library Foundation,Supports library programs across the city.,Library patrons and readers,Education,Loop,"Loop, Chicago, IL"
+45,Chicago Votes,Youth-led democracy and voting access.,Young voters,Civic,Chicagoland,Chicagoland (multiple sites)
+46,League of Women Voters of Chicago,Nonpartisan voter education and engagement.,Voters,Civic,Loop,"Loop, Chicago, IL"
+47,Center on Halsted,Midwest's largest LGBTQ community center.,LGBTQ+ Chicagoans,Community,Lakeview,"Lakeview, Chicago, IL"
+48,Cabrini Green Legal Aid,Free legal help and record clearing.,People with records and low income,Justice,Loop,"Loop, Chicago, IL"
+49,Chicago Community Bond Fund,Pays bond for people who can't afford it.,People held pretrial,Justice,Chicagoland,Chicagoland (multiple sites)
+50,Cara Collective,Job training and coaching for people facing poverty.,People facing poverty and homelessness,Workforce,Loop,"Loop, Chicago, IL"

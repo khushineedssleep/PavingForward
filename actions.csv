@@ -1,0 +1,151 @@
+action_id,org_id,action,action_detail,action_type,how_you_help,time_minutes,time_label,where
+1,1,Repack produce for distribution,Sort and box fresh produce on the warehouse floor for member pantries.,volunteer_shift,time,120,2 hr,in_person
+2,1,Post the 'hunger isn't a choice' graphic,Share their campaign post so more neighbors know free food is nearby.,share_message,voice,2,2 min,remote
+3,1,Email your county commissioner on food funding,Send a two-minute note backing local hunger-relief dollars.,contact_official,voice,5,5 min,remote
+4,2,Pack grocery orders,Assemble personalized grocery boxes for client-choice pickup.,volunteer_shift,time,150,2 hr 30 min,in_person
+5,2,Run a virtual food drive,Set up an online drive and rally your circle to fund groceries.,fundraise,time,30,30 min,remote
+6,2,Share the pantry finder,Post the map so people know where and when to get food.,share_message,voice,2,2 min,remote
+7,3,Sort clothing donations,"Fold, size, and shelve donated clothes for the free store.",volunteer_shift,time,120,2 hr,in_person
+8,3,Drop off winter coats,Bring gently used coats and warm layers to the donation door.,donate_goods,goods,20,20 min,in_person
+9,3,Post their volunteer call,Amplify their weekly shift openings to your neighbors.,share_message,voice,2,2 min,remote
+10,4,Stock pantry shelves,Restock and face shelves before distribution opens.,volunteer_shift,time,90,1 hr 30 min,in_person
+11,4,Deliver groceries to a homebound neighbor,Drive a short route dropping food to people who can't travel.,volunteer_shift,time,75,1 hr 15 min,in_person
+12,4,Sign up for a monthly grocery gift,Pledge a recurring grocery contribution online.,fundraise,time,5,5 min,remote
+13,5,Serve the evening meal,Plate and serve dinner in the community dining room.,volunteer_shift,time,180,3 hr,in_person
+14,5,Prep produce in the kitchen,Wash and chop vegetables for the day's meal.,volunteer_shift,time,120,2 hr,in_person
+15,5,Share tonight's meal count,Post their impact numbers to make the need visible.,share_message,voice,2,2 min,remote
+16,6,Drive one food rescue,Pick up surplus from a restaurant and drop it at a shelter.,volunteer_shift,time,45,45 min,in_person
+17,6,Claim a recurring weekly rescue,Commit to a standing pickup route through the app.,volunteer_shift,time,45,45 min,either
+18,6,Recruit a restaurant,Ask a local spot to donate surplus instead of tossing it.,skilled_task,skill,30,30 min,either
+19,7,Assemble hygiene kits,"Build kits with soap, socks, and essentials for the outreach bus.",volunteer_shift,time,90,1 hr 30 min,in_person
+20,7,Donate new socks and toiletries,Drop off packaged hygiene supplies for street outreach.,donate_goods,goods,15,15 min,in_person
+21,7,Post the outreach schedule,Share where the health bus will be this week.,share_message,voice,2,2 min,remote
+22,8,Call your state rep on housing funding,Two-minute call urging support for homelessness prevention dollars.,contact_official,voice,3,3 min,remote
+23,8,Sign the housing-is-a-right petition,Add your name to their statewide petition.,sign_petition,voice,2,2 min,remote
+24,8,Join a lobby day in Springfield,Ride along to meet legislators on housing bills.,attend_event,time,240,4 hr,in_person
+25,9,Stock the community market,Shelve food and goods in their free client market.,volunteer_shift,time,120,2 hr,in_person
+26,9,Host a supply drive,Collect hygiene and household items with your group.,donate_goods,time,60,1 hr,either
+27,9,Share a youth's story,Amplify a client story to build support.,share_message,voice,2,2 min,remote
+28,10,Serve in the fresh market,Help neighbors shop the free grocery market with dignity.,volunteer_shift,time,120,2 hr,in_person
+29,10,Mock-interview a job seeker,Run a practice interview and give feedback.,skilled_task,skill,60,1 hr,either
+30,10,Tutor an adult learner,Support GED or workforce prep one on one.,volunteer_shift,time,90,1 hr 30 min,in_person
+31,11,Cook and serve a shelter meal,Prepare and serve dinner for shelter guests.,volunteer_shift,time,180,3 hr,in_person
+32,11,Sponsor a night of meals,Fund one evening's dinner service online.,fundraise,time,5,5 min,remote
+33,11,Post the meal-team sign-up,Share their group volunteer openings.,share_message,voice,2,2 min,remote
+34,12,Set up a new family's apartment,Furnish and stock a home before a family arrives.,volunteer_shift,time,180,3 hr,in_person
+35,12,Be a weekly conversation partner,Practice English with a newcomer over coffee.,volunteer_shift,time,60,1 hr,either
+36,12,Donate a welcome kit,Provide kitchenware and linens for an arriving family.,donate_goods,goods,30,30 min,in_person
+37,13,Call your senator on immigrant protections,Two-minute call urging humane immigration policy.,contact_official,voice,3,3 min,remote
+38,13,Translate an intake document,Help translate forms for a Spanish or Creole speaker.,skilled_task,skill,90,1 hr 30 min,remote
+39,13,Share a know-your-rights card,Post the printable rights card so people are prepared.,share_message,voice,2,2 min,remote
+40,14,Help at citizenship class,Assist adults preparing for the naturalization test.,volunteer_shift,time,90,1 hr 30 min,in_person
+41,14,Tutor a child after school,Support homework and reading with a young student.,volunteer_shift,time,75,1 hr 15 min,in_person
+42,14,Sign up to interpret,Offer on-call interpretation in your language.,skilled_task,skill,10,10 min,either
+43,15,Coach resume writing,Help a job seeker sharpen their resume.,skilled_task,skill,60,1 hr,either
+44,15,Judge a student pitch night,Give feedback at a workforce program showcase.,attend_event,time,120,2 hr,in_person
+45,15,Share a scholarship link,Amplify a program opening to eligible neighbors.,share_message,voice,2,2 min,remote
+46,16,Join an airport welcome team,Greet a newly arriving refugee family.,volunteer_shift,time,120,2 hr,in_person
+47,16,Mentor a family for a season,Commit to monthly support as a family settles in.,volunteer_shift,time,90,1 hr 30 min,either
+48,16,Collect household goods,Gather furniture and kitchen basics with your group.,donate_goods,time,60,1 hr,either
+49,17,Sort kids' clothing and books,Inspect and pack donated children's items.,volunteer_shift,time,120,2 hr,in_person
+50,17,Run a diaper drive,Collect diapers and wipes with your office or block.,donate_goods,time,45,45 min,either
+51,17,Share the essentials wishlist,Post their current needs list to your network.,share_message,voice,2,2 min,remote
+52,18,Guest-speak about your career,Tell teens how you got into your field.,attend_event,time,60,1 hr,either
+53,18,Judge a teen showcase,Score final projects at a program expo.,attend_event,time,120,2 hr,in_person
+54,18,Share a teen apprenticeship link,Help a teenager you know find a paid spot.,share_message,voice,2,2 min,remote
+55,19,Shelve donated books,Sort and shelve inventory in the nonprofit bookstore.,volunteer_shift,time,120,2 hr,in_person
+56,19,Read one-on-one with a student,Support a young reader during a literacy session.,volunteer_shift,time,90,1 hr 30 min,in_person
+57,19,Donate gently used books,Drop off books to fund literacy programming.,donate_goods,goods,15,15 min,in_person
+58,20,Tutor in a shelter homework lab,Help kids with reading and math after school.,volunteer_shift,time,90,1 hr 30 min,in_person
+59,20,Assemble a birthday kit,Build a birthday-in-a-box for a child in a shelter.,donate_goods,time,30,30 min,either
+60,20,Share the tutor recruitment post,Help them find more volunteers this term.,share_message,voice,2,2 min,remote
+61,21,Help hang a student art show,Prep and install work for a youth exhibition.,volunteer_shift,time,120,2 hr,in_person
+62,21,Mentor a teen artist,Share your creative career over a studio visit.,skilled_task,skill,60,1 hr,either
+63,21,Donate art supplies,Drop off new supplies for the studios.,donate_goods,goods,20,20 min,in_person
+64,22,Judge a youth policy pitch,Give feedback as teens present real policy ideas.,attend_event,time,120,2 hr,in_person
+65,22,Share a youth voter reg drive,Amplify a student-led registration event.,share_message,voice,2,2 min,remote
+66,22,Sponsor a student's civic trip,Fund a young person's trip to a civic event.,fundraise,time,5,5 min,remote
+67,23,Staff a resource fair table,Share mental health resources at a community event.,volunteer_shift,time,180,3 hr,in_person
+68,23,Take the helpline training,Train to support callers on the mental health line.,skilled_task,skill,240,4 hr,either
+69,23,Share the helpline number,Post the free support line so people know it exists.,share_message,voice,2,2 min,remote
+70,24,Volunteer at a health event,Help run intake or logistics at a wellness pop-up.,volunteer_shift,time,120,2 hr,in_person
+71,24,Sort the food pantry (Brown Elephant),Organize donations at their resale-funded pantry.,volunteer_shift,time,90,1 hr 30 min,in_person
+72,24,Share sexual-health resources,Amplify free testing and care info.,share_message,voice,2,2 min,remote
+73,25,Assemble care packages,Pack essentials for people in transitional housing.,volunteer_shift,time,120,2 hr,in_person
+74,25,Call on anti-poverty funding,Urge your rep to protect safety-net programs.,contact_official,voice,5,5 min,remote
+75,25,Share a policy explainer,Post their brief on a current safety-net issue.,share_message,voice,2,2 min,remote
+76,26,Visit a senior weekly,Build a friendship through regular visits.,volunteer_shift,time,90,1 hr 30 min,either
+77,26,Make a friendly phone call,Check in by phone with an isolated elder.,volunteer_shift,time,20,20 min,remote
+78,26,Deliver a holiday meal,Bring a warm meal and company on a holiday.,volunteer_shift,time,120,2 hr,in_person
+79,27,Lead a virtual activity,Host a class or game session for seniors online.,skilled_task,skill,45,45 min,remote
+80,27,Drive a senior to an appointment,Provide a ride to a medical visit.,volunteer_shift,time,90,1 hr 30 min,in_person
+81,27,Share caregiver resources,Post support info for family caregivers.,share_message,voice,2,2 min,remote
+82,28,Deliver meals on a route,Drop off meals and check in on homebound seniors.,volunteer_shift,time,90,1 hr 30 min,in_person
+83,28,Pack pet food for seniors' pets,Bag pet meals so seniors keep their companions.,volunteer_shift,time,60,1 hr,in_person
+84,28,Fund a week of meals,Sponsor seven days of meals for one senior.,fundraise,time,5,5 min,remote
+85,29,Walk and socialize dogs,Give shelter dogs exercise and affection.,volunteer_shift,time,120,2 hr,in_person
+86,29,Foster a pet,Take a cat or dog home until it's adopted.,volunteer_shift,time,60,1 hr,either
+87,29,Share an adoptable pet,Post a pet's profile to help it find a home.,share_message,voice,2,2 min,remote
+88,30,Do laundry and dishes for the shelter,Handle behind-the-scenes chores that keep animals clean.,volunteer_shift,time,90,1 hr 30 min,in_person
+89,30,Donate towels and blankets,Drop off gently used linens for animal bedding.,donate_goods,goods,15,15 min,in_person
+90,30,Share the low-cost clinic,Post affordable vet-care info for pet owners.,share_message,voice,2,2 min,remote
+91,31,Socialize shy cats,Spend time helping fearful cats trust people.,volunteer_shift,time,90,1 hr 30 min,in_person
+92,31,Join a TNR (trap-neuter-return) team,Help humanely manage community cat colonies.,volunteer_shift,time,180,3 hr,in_person
+93,31,Share a special-needs cat,Amplify a hard-to-place cat's adoption profile.,share_message,voice,2,2 min,remote
+94,32,Join a river cleanup,Pull trash and invasive plants from the riverbank.,volunteer_shift,time,180,3 hr,in_person
+95,32,Log a wildlife sighting,Report birds or turtles you see to their monitoring project.,community_science,voice,10,10 min,either
+96,32,Comment on a river-quality rule,Submit a public comment supporting clean-water standards.,contact_official,voice,10,10 min,remote
+97,33,Plant trees on a work day,Dig and plant on a neighborhood tree event.,volunteer_shift,time,180,3 hr,in_person
+98,33,Become a TreeKeeper,Train to care for and advocate for urban trees.,skilled_task,skill,240,4 hr,in_person
+99,33,Sign the open-space petition,Back protection for a threatened natural area.,sign_petition,voice,2,2 min,remote
+100,34,Join a beach cleanup,Clear plastic and debris from a Lake Michigan shoreline.,volunteer_shift,time,120,2 hr,in_person
+101,34,Do the Great Lakes action pledge,Commit to plastic-reduction steps at home.,sign_petition,voice,5,5 min,remote
+102,34,Share a conservation tip,Post one action people can take for the lakes.,share_message,voice,2,2 min,remote
+103,35,Assemble safety-kit bags,Pack essentials for survivors leaving crisis.,volunteer_shift,time,90,1 hr 30 min,in_person
+104,35,Take the DV awareness training,Learn to recognize and respond to abuse.,skilled_task,skill,120,2 hr,either
+105,35,Share the 24-hour hotline,Post the confidential help line widely.,share_message,voice,2,2 min,remote
+106,36,Offer language interpretation,Interpret for a survivor in your language.,skilled_task,skill,30,30 min,either
+107,36,Donate grocery gift cards,Provide gift cards for families rebuilding.,donate_goods,goods,10,10 min,remote
+108,36,Share culturally-specific resources,Amplify help info for immigrant communities.,share_message,voice,2,2 min,remote
+109,37,Play with kids at the shelter,"Give children a fun, safe hour while parents get help.",volunteer_shift,time,120,2 hr,in_person
+110,37,Sort donated household goods,Organize items for families setting up new homes.,volunteer_shift,time,90,1 hr 30 min,in_person
+111,37,Call on DV funding,Urge legislators to fund shelters and hotlines.,contact_official,voice,5,5 min,remote
+112,38,Pack book requests,Match donated books to letters and prep them to mail.,volunteer_shift,time,120,2 hr,in_person
+113,38,Donate paperbacks,Drop off requested titles like dictionaries and novels.,donate_goods,goods,15,15 min,either
+114,38,Sponsor postage,Fund shipping so more books get mailed.,fundraise,time,5,5 min,remote
+115,39,Call on accessible-transit funding,Urge support for accessible public transit.,contact_official,voice,5,5 min,remote
+116,39,Help at an accessibility audit,Assess a public space for barriers with their team.,skilled_task,skill,120,2 hr,in_person
+117,39,Share a disability-rights alert,Amplify a time-sensitive advocacy ask.,share_message,voice,2,2 min,remote
+118,40,Volunteer at a competition,"Time races, hand out medals, and cheer athletes on.",volunteer_shift,time,240,4 hr,in_person
+119,40,Coach or assist at practice,Help run drills for a local team.,volunteer_shift,time,90,1 hr 30 min,in_person
+120,40,Share the Polar Plunge,Amplify their signature fundraiser.,share_message,voice,2,2 min,remote
+121,41,Become a one-to-one buddy,Build a year of friendship with a matched buddy.,volunteer_shift,time,60,1 hr,either
+122,41,Host an inclusive meetup,Organize a casual group hangout.,attend_event,time,120,2 hr,in_person
+123,41,Share a job-coaching need,Help connect a buddy to employment.,share_message,voice,2,2 min,remote
+124,42,Mock-interview a veteran,Run practice interviews and coach a job seeker.,skilled_task,skill,60,1 hr,either
+125,42,Assemble a transition kit,Pack resources for a veteran re-entering civilian work.,volunteer_shift,time,90,1 hr 30 min,in_person
+126,42,Share a veteran job posting,Amplify openings to your professional network.,share_message,voice,2,2 min,remote
+127,43,Usher a community concert,Greet guests and hand out programs at a show.,volunteer_shift,time,180,3 hr,in_person
+128,43,Donate a working instrument,Give an instrument for their access program.,donate_goods,goods,20,20 min,in_person
+129,43,Share a free family concert,Post an upcoming free event to your neighbors.,share_message,voice,2,2 min,remote
+130,44,Help at a summer reading event,Run activities at a branch reading kickoff.,volunteer_shift,time,120,2 hr,in_person
+131,44,Read to kids at story time,Lead a story-time session at a branch.,volunteer_shift,time,45,45 min,in_person
+132,44,Advocate for library funding,Ask the city to protect branch hours and budgets.,contact_official,voice,5,5 min,remote
+133,45,Register voters at an event,Sign up new voters at a community gathering.,volunteer_shift,time,120,2 hr,in_person
+134,45,Text-bank for turnout,Send get-out-the-vote texts from your phone.,volunteer_shift,time,30,30 min,remote
+135,45,Share a registration deadline,Post the deadline so no one misses it.,share_message,voice,2,2 min,remote
+136,46,Staff a candidate forum,Help run a nonpartisan community forum.,volunteer_shift,time,180,3 hr,in_person
+137,46,Distribute voter guides,Hand out nonpartisan guides in your neighborhood.,volunteer_shift,time,60,1 hr,either
+138,46,Share the ballot explainer,Post the plain-language guide to what's on the ballot.,share_message,voice,2,2 min,remote
+139,47,Serve at the food pantry,Stock and staff the LGBTQ-affirming food pantry.,volunteer_shift,time,120,2 hr,in_person
+140,47,Help run a youth program,Support activities in the drop-in youth space.,volunteer_shift,time,120,2 hr,in_person
+141,47,Share a safe-space resource,Amplify support info for LGBTQ youth.,share_message,voice,2,2 min,remote
+142,48,Volunteer at an expungement clinic,Help clients through record-clearing paperwork.,volunteer_shift,time,180,3 hr,in_person
+143,48,Offer pro-bono legal skills,Take a case or research task if you're a lawyer.,skilled_task,skill,120,2 hr,either
+144,48,Share the free clinic schedule,Post upcoming clinics so people can get help.,share_message,voice,2,2 min,remote
+145,49,Call on pretrial-justice policy,Urge your rep to support ending cash bail harms.,contact_official,voice,5,5 min,remote
+146,49,Sign the end-money-bond petition,Add your name to the campaign.,sign_petition,voice,2,2 min,remote
+147,49,Write to someone in jail,Send a supportive letter to a person held pretrial.,volunteer_shift,time,30,30 min,remote
+148,50,Give a motivational talk,Speak at the daily community affirmations session.,attend_event,time,30,30 min,in_person
+149,50,Mock-interview a participant,Coach a job seeker with a practice interview.,skilled_task,skill,60,1 hr,either
+150,50,Refer an open role,Connect a graduate to a job opening you know of.,share_message,voice,5,5 min,remote
