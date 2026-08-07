@@ -39,22 +39,30 @@
   <div class="hero wrap">
     <h1>Tell us how you want to help.<br><span class="line-red">We'll hand you the plan.</span></h1>
     <p class="lede">
-      Type it like you'd say it. Two minutes or two hours, from your couch or in your
-      neighborhood. Every result is a real thing you can do today.
+      Pick a cause and how much time you've got. Every result is a real thing you can do today.
     </p>
 
     <form class="search-row" id="match-form">
-      <input type="text" id="intent" placeholder="I've got 2 minutes" autocomplete="off" />
+      <select id="cause-filter" aria-label="Cause"></select>
+      <select id="time-filter" aria-label="Time available">
+        <option value="any">Any amount of time</option>
+        <option value="2">2 minutes or less</option>
+        <option value="15">15 minutes or less</option>
+        <option value="30">30 minutes or less</option>
+        <option value="60">1 hour or less</option>
+        <option value="120">2 hours or less</option>
+        <option value="240">Half a day or less</option>
+      </select>
       <button type="submit">Find my actions</button>
     </form>
 
     <div class="pills">
-      <button type="button" class="pill" data-q="I've got 2 minutes">I've got 2 minutes</button>
-      <button type="button" class="pill" data-q="Help immigrants">Help immigrants</button>
-      <button type="button" class="pill" data-q="Free Saturday afternoon">Free Saturday afternoon</button>
-      <button type="button" class="pill" data-q="Something with animals">Something with animals</button>
-      <button type="button" class="pill" data-q="Use my job skills">Use my job skills</button>
-      <button type="button" class="pill" data-q="Help kids, from home">Help kids, from home</button>
+      <button type="button" class="pill" data-cause="any" data-time="2">I've got 2 minutes</button>
+      <button type="button" class="pill" data-cause="Immigration" data-time="any">Help immigrants</button>
+      <button type="button" class="pill" data-cause="any" data-time="240">Free Saturday afternoon</button>
+      <button type="button" class="pill" data-cause="Animals" data-time="any">Something with animals</button>
+      <button type="button" class="pill" data-cause="Workforce" data-time="any">Use my job skills</button>
+      <button type="button" class="pill" data-cause="Youth" data-time="any">Help kids, from home</button>
     </div>
   </div>
 
