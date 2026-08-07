@@ -15,6 +15,11 @@
   --badge-gray-bg:   #E7E9ED;
   --badge-gray-text: #5B6472;
 
+  /* Calendar-only accents (Events tab) */
+  --accent-blue:       #A8D8EF;
+  --accent-amber-bg:   #FFE3B3;
+  --accent-amber-text: #7A4B00;
+
   --display: "Archivo Black", sans-serif;
   --body: "Inter", sans-serif;
 
@@ -439,3 +444,107 @@ footer {
   .search-row button { border-radius: 0 0 var(--radius) var(--radius); padding: 16px; }
   #map { height: 380px; }
 }
+
+/* ---------------------------------------------------------
+   Events tab (calendar module) — reuses the tokens above.
+   Class names kept as delivered so the module drops in cleanly.
+--------------------------------------------------------- */
+.evwrap { max-width: 1080px; margin: 0 auto; padding: 40px 32px 90px; font-family: var(--body); }
+.evwrap h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.evwrap .sub { color: var(--ink-soft); margin-top: 8px; max-width: 52ch; }
+
+.evfilters { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+.chip {
+  font: inherit; font-size: .88rem; font-weight: 600; color: var(--ink);
+  background: #fff; border: 1.5px solid var(--line-strong); border-radius: 999px;
+  padding: 8px 14px; cursor: pointer; transition: all .12s ease;
+}
+.chip:hover { border-color: var(--red); color: var(--red); }
+.chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.go {
+  font: inherit; font-size: .9rem; font-weight: 700; background: none;
+  border: 2px solid var(--ink); border-radius: var(--radius-sm); padding: 8px 14px;
+  cursor: pointer; color: var(--ink); transition: all .12s ease;
+}
+.go:hover { background: var(--ink); color: #fff; }
+.go.done { background: var(--red); border-color: var(--red); color: #fff; }
+
+.orglink {
+  font-size: .88rem; color: var(--red-dark); font-weight: 600; background: none;
+  border: 0; padding: 0; cursor: pointer; text-align: left; font-family: inherit;
+  text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color .12s;
+}
+.orglink:hover { text-decoration-color: var(--red-dark); }
+
+.dayhead { margin: 30px 0 12px; display: flex; align-items: center; gap: 12px; }
+.dayhead .d { font-family: var(--display); font-weight: 400; font-size: 1rem; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; color: var(--ink); }
+.dayhead .d em { font-style: normal; color: var(--red); }
+.dayhead .rule { height: 3px; flex: 1; background: var(--accent-blue); border-radius: 2px; }
+
+.evitem {
+  background: #fff; border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm);
+  padding: 16px 18px; display: flex; gap: 16px; margin-bottom: 12px; align-items: flex-start;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.evitem:hover { border-color: var(--ink); box-shadow: 4px 4px 0 var(--line); }
+.evtime { flex: none; text-align: center; min-width: 74px; border-right: 2px solid var(--accent-blue); padding-right: 14px; }
+.evtime .t1 { font-family: var(--display); font-weight: 400; font-size: 1.05rem; color: var(--ink); }
+.evtime .t2 { font-size: .78rem; color: var(--ink-soft); font-weight: 600; }
+.evbody { flex: 1; min-width: 0; }
+.evbody h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.25; color: var(--ink); }
+.evbody .desc { font-size: .9rem; color: var(--ink-soft); margin-top: 4px; }
+.evbody .evmeta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; align-items: center; }
+.evbody .loc { font-size: .82rem; color: var(--ink-soft); font-weight: 600; }
+.evside { flex: none; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+@media (max-width: 600px) { .evitem { flex-wrap: wrap; } .evside { flex-direction: row; width: 100%; justify-content: flex-start; } }
+
+.kindtag { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: 4px 8px; border-radius: 6px; }
+.kindtag.volunteer { background: var(--accent-blue); color: var(--ink); }
+.kindtag.training { background: var(--badge-gray-bg); color: var(--ink-soft); }
+.kindtag.event { background: var(--accent-amber-bg); color: var(--accent-amber-text); }
+.kindtag.advocacy { background: var(--red); color: #fff; }
+
+.evempty { text-align: center; color: var(--ink-soft); border: 2px dashed var(--line); border-radius: var(--radius); padding: 40px 20px; margin-top: 26px; }
+
+.evtoggle { display: flex; gap: 0; margin-top: 18px; border: 2px solid var(--ink); border-radius: var(--radius-sm); overflow: hidden; width: fit-content; }
+.evtoggle button { font: inherit; font-weight: 800; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; padding: 9px 18px; border: 0; background: #fff; color: var(--ink); cursor: pointer; }
+.evtoggle button.on { background: var(--ink); color: #fff; }
+.evtoggle button:not(.on):hover { color: var(--red); }
+
+.calhead { display: flex; align-items: center; gap: 12px; margin: 24px 0 12px; }
+.calhead .mname { font-family: var(--display); font-weight: 400; font-size: 1.25rem; text-transform: uppercase; color: var(--ink); }
+.calhead button { font: inherit; font-weight: 800; font-size: 1rem; width: 36px; height: 36px; border: 2px solid var(--ink); background: #fff; border-radius: var(--radius-sm); cursor: pointer; color: var(--ink); }
+.calhead button:hover { background: var(--ink); color: #fff; }
+.calgrid { display: grid; grid-template-columns: repeat(7, 1fr); border: 2px solid var(--ink); border-radius: var(--radius-sm); overflow: hidden; background: var(--line); gap: 1.5px; }
+.calgrid .dow { background: var(--ink); color: #fff; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; text-align: center; padding: 8px 2px; }
+.calcell { background: #fff; min-height: 86px; padding: 6px; cursor: default; position: relative; display: flex; flex-direction: column; gap: 3px; }
+.calcell.out { background: #F4F7FA; color: #B4C2CE; }
+.calcell.hasev { cursor: pointer; }
+.calcell.hasev:hover { background: #FFF3F4; }
+.calcell.sel { outline: 3px solid var(--red); outline-offset: -3px; z-index: 1; }
+.calcell .dnum { font-size: .78rem; font-weight: 800; color: var(--ink); }
+.calcell.today .dnum { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--red); color: #fff; border-radius: 50%; }
+.calchip { font-size: .66rem; font-weight: 700; line-height: 1.2; padding: 2px 5px; border-radius: 4px; background: var(--accent-blue); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.calchip.advocacy { background: var(--red); color: #fff; }
+.calchip.training { background: var(--badge-gray-bg); color: var(--ink-soft); }
+.calchip.event { background: var(--accent-amber-bg); color: var(--accent-amber-text); }
+.calmore { font-size: .64rem; font-weight: 800; color: var(--red); }
+.caldots { display: none; gap: 3px; flex-wrap: wrap; }
+.caldot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-blue); }
+.caldot.advocacy { background: var(--red); }
+.caldot.training { background: var(--line-strong); }
+.caldot.event { background: #F0B24E; }
+@media (max-width: 640px) {
+  .calcell { min-height: 56px; }
+  .calchip, .calmore { display: none; }
+  .caldots { display: flex; }
+}
+.seldaywrap { margin-top: 22px; }
