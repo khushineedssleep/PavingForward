@@ -1,216 +1,353 @@
 /* ---------------------------------------------------------
-   Chicago Civic Match — design tokens
-   Palette: municipal ledger, drawn from the Chicago flag's
-   river-blue and star-red, on cool paper (not warm cream).
+   Show Up Chicago — design tokens
 --------------------------------------------------------- */
 :root {
-  --paper:       #EFEDE6;
-  --paper-alt:   #E4E0D3;
-  --ink:         #17212B;
-  --ink-soft:    #4B5563;
-  --river:       #2C6E8E;
-  --river-deep:  #17435A;
-  --signal:      #D6431F;
-  --line:        #C7C0AE;
-  --line-strong: #9C9482;
+  --bg:          #F5F7FB;
+  --ink:         #101A2B;
+  --ink-soft:    #5B6472;
+  --red:         #D7262C;
+  --red-dark:    #B91E23;
+  --line:        #E4E7EC;
+  --line-strong: #C8CDD6;
 
-  --display: "Barlow Condensed", sans-serif;
+  --badge-blue-bg:   #DBEEFC;
+  --badge-blue-text: #0F3A5C;
+  --badge-gray-bg:   #E7E9ED;
+  --badge-gray-text: #5B6472;
+
+  --display: "Archivo Black", sans-serif;
   --body: "Inter", sans-serif;
-  --mono: "IBM Plex Mono", monospace;
 
-  --radius: 2px;
+  --radius: 10px;
+  --radius-sm: 8px;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
   line-height: 1.5;
+  border-top: 6px solid var(--red);
 }
 
-a { color: var(--river-deep); }
+a { color: var(--red); }
 
 .wrap {
-  max-width: 1080px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
 }
 
-/* ---------- Header / letterhead ---------- */
+/* ---------- Header ---------- */
 header.masthead {
-  border-bottom: 3px solid var(--ink);
-  padding: 20px 0 14px;
+  padding: 22px 0;
 }
 .masthead .wrap {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
 }
-.masthead .mark {
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* Logo slot: drop a PNG in the project root and swap the line below for
+   <img src="logo.png" alt="Show Up Chicago" class="brand-logo-img"> —
+   the star stays as a fallback mark until then. */
+.brand-star {
+  color: var(--red);
+  font-size: 22px;
+  line-height: 1;
+}
+.brand-logo-img {
+  height: 28px;
+  width: auto;
+}
+.brand-name {
   font-family: var(--display);
-  font-weight: 700;
-  font-size: 26px;
-  letter-spacing: 0.02em;
+  font-size: 20px;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
 }
-.masthead .mark span { color: var(--signal); }
-.masthead .tagline {
-  font-family: var(--mono);
-  font-size: 12px;
+.brand-name .accent { color: var(--red); }
+
+nav.tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+nav.tabs button {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 15px;
   color: var(--ink-soft);
-  letter-spacing: 0.03em;
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+nav.tabs button.active {
+  background: #E9EDF3;
+  color: var(--ink);
+}
+nav.tabs button:hover { color: var(--ink); }
+.badge-count {
+  background: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
 }
 
-/* ---------- Hero / match form ---------- */
+/* ---------- Hero / search ---------- */
 .hero {
-  padding: 56px 0 40px;
-  border-bottom: 1px solid var(--line);
+  padding: 48px 0 40px;
 }
 .hero h1 {
   font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(40px, 6vw, 68px);
-  line-height: 0.98;
+  font-weight: 400;
+  font-size: clamp(38px, 5.2vw, 64px);
+  line-height: 1.02;
   letter-spacing: -0.01em;
-  margin: 0 0 18px;
-  max-width: 16ch;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+  max-width: 20ch;
 }
-.hero h1 em {
-  font-style: normal;
-  color: var(--river);
-}
+.hero h1 .line-red { color: var(--red); }
+
 .hero p.lede {
   font-size: 18px;
   color: var(--ink-soft);
-  max-width: 56ch;
-  margin: 0 0 36px;
+  max-width: 58ch;
+  margin: 0 0 32px;
 }
 
-.ledger-card {
-  background: var(--paper-alt);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  padding: 28px;
-  position: relative;
-}
-.ledger-card::before {
-  content: "ENTRY";
-  position: absolute;
-  top: -11px;
-  left: 24px;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  padding: 3px 8px;
-}
-
-.field { margin-bottom: 20px; }
-.field label {
-  display: block;
-  font-family: var(--mono);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ink-soft);
-  margin-bottom: 8px;
-}
-.field textarea,
-.field select {
-  width: 100%;
-  font-family: var(--body);
-  font-size: 16px;
-  padding: 12px 14px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  background: var(--paper);
-  color: var(--ink);
-  resize: vertical;
-}
-.field textarea:focus,
-.field select:focus,
-button:focus-visible,
-.leaflet-marker-icon:focus-visible {
-  outline: 3px solid var(--river);
-  outline-offset: 1px;
-}
-
-button.submit {
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: var(--signal);
-  color: var(--paper);
-  border: none;
-  border-radius: var(--radius);
-  padding: 13px 22px;
-  cursor: pointer;
-  transition: transform 0.12s ease;
-}
-button.submit:hover { transform: translateY(-1px); }
-button.submit:active { transform: translateY(0); }
-
-/* ---------- Results ---------- */
-#results { margin-top: 32px; }
-#results .results-label {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
-}
-.match-card {
+.search-row {
   display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  border-top: 1px solid var(--line);
-  padding: 18px 0;
-}
-.match-card:first-child { border-top: none; }
-.match-card .cause-tag {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--river);
-  border: 1px solid var(--river);
+  max-width: 900px;
+  box-shadow: 0 8px 24px rgba(16, 26, 43, 0.08);
   border-radius: var(--radius);
-  padding: 2px 7px;
-  white-space: nowrap;
-  margin-top: 3px;
+  overflow: hidden;
 }
-.match-card h3 {
-  font-family: var(--display);
-  font-size: 22px;
+.search-row input {
+  flex: 1;
+  border: 2px solid var(--ink);
+  border-right: none;
+  border-radius: var(--radius) 0 0 var(--radius);
+  padding: 18px 20px;
+  font-family: var(--body);
+  font-size: 17px;
+  color: var(--ink);
+  background: #fff;
+}
+.search-row input:focus {
+  outline: none;
+}
+.search-row button {
+  font-family: var(--body);
   font-weight: 700;
-  margin: 0 0 4px;
+  font-size: 16px;
+  background: var(--ink);
+  color: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0 28px;
+  cursor: pointer;
+  white-space: nowrap;
 }
-.match-card .meta {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-soft);
-  margin-bottom: 8px;
+.search-row button:hover { background: #1c2c47; }
+
+.search-row input:focus-visible,
+.search-row button:focus-visible,
+.pill:focus-visible,
+.tab-btn:focus-visible,
+button.submit-in:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
 }
-.match-card p { margin: 0 0 8px; color: var(--ink-soft); }
-.match-card .task {
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+  max-width: 900px;
+}
+.pill {
+  font-family: var(--body);
+  font-size: 14px;
   font-weight: 600;
   color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 9px 16px;
+  cursor: pointer;
 }
+.pill:hover { border-color: var(--ink); }
+
+/* ---------- Results ---------- */
+.results-section { padding: 12px 0 8px; }
+
+.results-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.results-head h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 26px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.results-head .match-count {
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+.we-heard {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin: 0 0 30px;
+}
+.we-heard strong { color: var(--ink); }
+
+.time-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 20px;
+}
+.time-divider h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin: 0;
+  white-space: nowrap;
+}
+.time-divider .rule {
+  flex: 1;
+  height: 2px;
+  background: #BFD9EA;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 44px;
+}
+@media (max-width: 760px) {
+  .results-grid { grid-template-columns: 1fr; }
+}
+
+.action-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.badge-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.badge {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+.badge.time { background: var(--badge-blue-bg); color: var(--badge-blue-text); }
+.badge.where { background: var(--badge-gray-bg); color: var(--badge-gray-text); }
+
+.action-card h3 {
+  font-family: var(--body);
+  font-weight: 800;
+  font-size: 21px;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+.action-card .org-name {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+.action-card p.desc {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin: 0 0 20px;
+}
+
+.card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.card-actions button,
+.card-actions a {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 14px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.card-actions a { text-decoration: underline; }
+.card-actions button:hover { background: #F1F3F6; }
+.card-actions button.added {
+  background: var(--ink);
+  color: #fff;
+}
+
 .empty-note {
   color: var(--ink-soft);
   font-style: italic;
+  margin-bottom: 44px;
 }
 
-/* ---------- Map / "the ledger map" ---------- */
-.map-section { padding: 56px 0 64px; }
+/* ---------- My actions view ---------- */
+.my-actions-list .action-card { margin-bottom: 0; }
+.my-actions-empty {
+  color: var(--ink-soft);
+  font-size: 16px;
+  padding: 40px 0;
+}
+.my-actions-empty strong { color: var(--ink); }
+
+/* ---------- Map ---------- */
+.map-section { padding: 40px 0 64px; border-top: 1px solid var(--line); margin-top: 8px; }
 .map-section .section-head {
   display: flex;
   justify-content: space-between;
@@ -221,67 +358,63 @@ button.submit:active { transform: translateY(0); }
 }
 .map-section h2 {
   font-family: var(--display);
-  font-size: 34px;
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 28px;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
 }
 .map-section .coord {
-  font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-soft);
 }
 #map {
-  height: 520px;
+  height: 480px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  filter: saturate(0.75) contrast(1.05);
 }
 .map-hint {
-  font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-soft);
   margin-top: 10px;
 }
 
-/* Leaflet popup restyle to match the ledger */
 .leaflet-popup-content-wrapper {
-  border-radius: var(--radius);
-  background: var(--paper-alt);
+  border-radius: var(--radius-sm);
+  background: #fff;
   border: 1px solid var(--line-strong);
 }
 .leaflet-popup-content { font-family: var(--body); margin: 12px 14px; }
 .leaflet-popup-content h4 {
-  font-family: var(--display);
-  font-size: 18px;
+  font-family: var(--body);
+  font-weight: 800;
+  font-size: 17px;
   margin: 0 0 4px;
 }
 .leaflet-popup-content .popup-meta {
-  font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink-soft);
   margin-bottom: 6px;
 }
 .pin-dot {
   width: 14px;
   height: 14px;
-  background: var(--signal);
-  border: 2px solid var(--paper);
+  background: var(--red);
+  border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 1px var(--ink);
 }
 
 /* ---------- Footer ---------- */
 footer {
-  border-top: 3px solid var(--ink);
+  border-top: 1px solid var(--line);
   padding: 24px 0;
-  font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-soft);
 }
 
 @media (max-width: 640px) {
-  .match-card { flex-direction: column; }
-  #map { height: 400px; }
+  .search-row { flex-direction: column; box-shadow: none; }
+  .search-row input { border-radius: var(--radius) var(--radius) 0 0; border-right: 2px solid var(--ink); }
+  .search-row button { border-radius: 0 0 var(--radius) var(--radius); padding: 16px; }
+  #map { height: 380px; }
 }
