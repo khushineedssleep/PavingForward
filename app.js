@@ -22,18 +22,6 @@ const TIME_LABELS = {
   "240": "half a day"
 };
 
-function populateCauseFilter() {
-  const select = document.getElementById("cause-filter");
-  const causes = [...new Set(ORGS.map((o) => o.causeArea))].sort();
-  select.innerHTML = `<option value="any">Any cause</option>`;
-  causes.forEach((cause) => {
-    const opt = document.createElement("option");
-    opt.value = cause;
-    opt.textContent = cause;
-    select.appendChild(opt);
-  });
-}
-
 function runMatch() {
   const cause = document.getElementById("cause-filter").value;
   const timeValue = document.getElementById("time-filter").value;
@@ -237,19 +225,40 @@ function initMap() {
 // ---------- Wire up ----------
 
 document.addEventListener("DOMContentLoaded", () => {
-  populateCauseFilter();
   initMap();
   updateMyCount();
 
+  // Sanity check: the cause dropdown's options are hardcoded in index.html
+  // for reliability (see README). If organizations.csv ever gets a cause
+  // area that isn't in that list, warn loudly in the console instead of
+  // silently dropping matches for it.
+  const knownCauses = new Set(
+    [...document.getElementById("cause-filter").options].map((o) => o.value)
+  );
+  const dataCauses = new Set(ORGS.map((o) => o.causeArea));
+  dataCauses.forEach((c) => {
+    if (!knownCauses.has(c)) {
+      console.warn(
+        `Cause "${c}" appears in the data but isn't an option in the cause-filter <select> in index.html — add it there.`
+      );
+    }
+  });
+
   document.getElementById("match-form").addEventListener("submit", (e) => {
     e.preventDefault();
+    clearActivePill();
     runMatch();
   });
+
+  document.getElementById("cause-filter").addEventListener("change", clearActivePill);
+  document.getElementById("time-filter").addEventListener("change", clearActivePill);
 
   document.querySelectorAll(".pill").forEach((pill) => {
     pill.addEventListener("click", () => {
       document.getElementById("cause-filter").value = pill.dataset.cause;
       document.getElementById("time-filter").value = pill.dataset.time;
+      document.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
+      pill.classList.add("active");
       runMatch();
     });
   });
@@ -260,5 +269,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Demo default on load — same combo as the "I've got 2 minutes" pill.
   document.getElementById("time-filter").value = "2";
+  document.querySelector('.pill[data-time="2"]')?.classList.add("active");
   runMatch();
 });
+
+function clearActivePill() {
+  document.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
+}
