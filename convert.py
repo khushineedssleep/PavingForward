@@ -62,13 +62,29 @@ for o in orgs:
         "neighborhood": n,
         "multiSite": multi_site,
         "address": o['address'],
+        # Optional column — add a "website" column to organizations.csv
+        # with real URLs and this will pick it up automatically. Until
+        # then, cards link out to a search for the org's name instead.
+        "website": (o.get('website') or '').strip(),
         "lat": round(lat, 5),
         "lng": round(lng, 5),
         "actions": actions_by_org.get(o['org_id'], [])
     })
 
-with open('data.json', 'w') as f:
+with open('data.js', 'w') as f:
+    f.write('''/**
+ * data.js — Chicago Civic Match dataset
+ * ------------------------------------------------
+ * GENERATED FILE — do not hand-edit. Edit organizations.csv / actions.csv
+ * and re-run `python3 convert.py` instead.
+ *
+ * Each org has a list of small "actions" (real tasks), each with a time
+ * cost in minutes and a mode (in_person / remote / either).
+ */
+
+const ORGS = ''')
     json.dump(out, f, indent=2)
+    f.write(';\n')
 
 print("orgs:", len(out))
 print("total actions:", sum(len(o['actions']) for o in out))
