@@ -60,16 +60,15 @@ header.masthead {
   align-items: center;
   gap: 10px;
 }
-/* Logo slot: drop a PNG in the project root and swap the line below for
-   <img src="logo.png" alt="Show Up Chicago" class="brand-logo-img"> —
-   the star stays as a fallback mark until then. */
+/* .brand-star is unused now that logo.png is wired in above — kept in
+   case you ever want to swap back to the text mark. */
 .brand-star {
   color: var(--red);
   font-size: 22px;
   line-height: 1;
 }
 .brand-logo-img {
-  height: 28px;
+  height: 32px;
   width: auto;
 }
 .brand-name {
