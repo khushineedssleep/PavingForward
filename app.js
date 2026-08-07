@@ -1,136 +1,54 @@
 /**
  * app.js — Show Up Chicago
- * One free-text box drives everything: it's parsed for both a time
- * budget ("2 minutes", "an hour") and interest keywords ("immigrants",
- * "animals", "job skills"), matched against ORGS/actions from data.js.
- * "I'm in" saves an action to My Actions via localStorage — no backend.
+ * Two dropdown filters — cause and time available — drive matching.
+ * Deterministic on purpose: this runs live in front of people, so exact
+ * filtering beats guessable free-text parsing. "I'm in" saves an action
+ * to My Actions via localStorage — no backend.
  */
 
 const STORAGE_KEY = "suc_my_actions";
-
-// ---------- Time parsing ----------
-// Pulls a minute budget + a human label out of free text. Falls back to
-// "no limit" when nothing time-shaped is said (e.g. "Free Saturday
-// afternoon" implies a bigger, looser block of time, not a hard cap).
-function parseTimeBudget(text) {
-  const t = text.toLowerCase();
-
-  let m = t.match(/(\d+)\s*(minutes|minute|mins|min)\b/);
-  if (m) {
-    const n = parseInt(m[1], 10);
-    return { minutes: n, label: `${n} minute${n === 1 ? "" : "s"}` };
-  }
-
-  m = t.match(/(\d+(?:\.\d+)?)\s*(hours|hour|hrs|hr)\b/);
-  if (m) {
-    const n = parseFloat(m[1]);
-    return { minutes: Math.round(n * 60), label: `${m[1]} hour${n === 1 ? "" : "s"}` };
-  }
-
-  if (/half\s*a?\s*day/.test(t)) return { minutes: 240, label: "half a day" };
-  if (/all\s*day|full\s*day/.test(t)) return { minutes: Infinity, label: null };
-  if (/(quick|couple|few)\s*(min|minutes)?/.test(t) && /quick|couple minutes|few minutes/.test(t)) {
-    return { minutes: 15, label: "a few minutes" };
-  }
-
-  return { minutes: Infinity, label: null };
-}
-
-// ---------- Keyword matching over ACTIONS ----------
-
-const STOPWORDS = new Set([
-  "i", "want", "to", "help", "with", "who", "the", "a", "an", "and", "for",
-  "in", "on", "of", "my", "im", "i'm", "would", "like", "have", "has", "ve",
-  "got", "from", "use", "hours", "hour", "minutes", "minute", "min", "mins", "week",
-  "month", "time", "free", "please", "chicago", "something", "do"
-]);
-
-function tokenize(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
-    .split(/\s+/)
-    .filter((w) => w.length > 1 && !STOPWORDS.has(w));
-}
 
 const ACTIONS = ORGS.flatMap((org) =>
   org.actions.map((action) => ({ org, action }))
 );
 
-const SKILL_WORDS = new Set(["skill", "skills", "job", "career", "professional", "expertise"]);
-const REMOTE_WORDS = new Set(["home", "remote", "online", "virtual", "phone", "couch"]);
-const IN_PERSON_WORDS = new Set(["person", "neighborhood", "outside", "outdoors"]);
+const TIME_LABELS = {
+  any: null,
+  "2": "2 minutes",
+  "15": "15 minutes",
+  "30": "30 minutes",
+  "60": "1 hour",
+  "120": "2 hours",
+  "240": "half a day"
+};
 
-// Whole-word match — plain .includes() would let "home" match inside
-// "Homelessness", which is a false positive we don't want.
-function hasWord(haystack, token) {
-  return new RegExp(`\\b${token}\\b`).test(haystack);
-}
-
-function scoreEntry(org, action, tokens) {
-  if (tokens.length === 0) return 0;
-
-  const strongText = [org.whoTheyServe, org.causeArea].join(" ").toLowerCase();
-  const weakText = [
-    org.description,
-    org.name,
-    org.neighborhood,
-    action.action,
-    action.detail,
-    action.howYouHelp
-  ]
-    .join(" ")
-    .toLowerCase();
-
-  let score = 0;
-  tokens.forEach((tok) => {
-    if (hasWord(strongText, tok)) score += 3;
-    else if (hasWord(weakText, tok)) score += 1;
-
-    if (SKILL_WORDS.has(tok) && action.type === "skilled_task") score += 3;
-    if (REMOTE_WORDS.has(tok) && (action.where === "remote" || action.where === "either")) score += 2;
-    if (IN_PERSON_WORDS.has(tok) && (action.where === "in_person" || action.where === "either")) score += 2;
+function populateCauseFilter() {
+  const select = document.getElementById("cause-filter");
+  const causes = [...new Set(ORGS.map((o) => o.causeArea))].sort();
+  select.innerHTML = `<option value="any">Any cause</option>`;
+  causes.forEach((cause) => {
+    const opt = document.createElement("option");
+    opt.value = cause;
+    opt.textContent = cause;
+    select.appendChild(opt);
   });
-  return score;
 }
-
-function actionFits(action, maxMinutes) {
-  return action.minutes <= maxMinutes;
-}
-
-// ---------- Run a search ----------
 
 function runMatch() {
-  const text = document.getElementById("intent").value;
-  const tokens = tokenize(text);
-  const { minutes: maxMinutes, label: timeLabel } = parseTimeBudget(text);
+  const cause = document.getElementById("cause-filter").value;
+  const timeValue = document.getElementById("time-filter").value;
+  const maxMinutes = timeValue === "any" ? Infinity : parseInt(timeValue, 10);
+  const timeLabel = TIME_LABELS[timeValue];
 
-  const candidates = ACTIONS.map(({ org, action }) => ({
-    org,
-    action,
-    score: scoreEntry(org, action, tokens)
-  }));
+  const matches = ACTIONS.filter(
+    ({ org, action }) =>
+      (cause === "any" || org.causeArea === cause) && action.minutes <= maxMinutes
+  ).sort((a, b) => a.action.minutes - b.action.minutes || a.org.name.localeCompare(b.org.name));
 
-  let filtered = candidates.filter((s) => s.score > 0 && actionFits(s.action, maxMinutes));
+  renderMatches(matches, cause, timeLabel);
 
-  // No interest keywords (a pure time query like "I've got 2 minutes"),
-  // or the words used just aren't in the data (e.g. "Saturday") — either
-  // way, don't show an empty result for a query that specified a real
-  // time budget. Fall back to whatever fits the time, shortest first.
-  if (filtered.length === 0) {
-    filtered = candidates
-      .filter((s) => actionFits(s.action, maxMinutes))
-      .sort((a, b) => a.action.minutes - b.action.minutes);
-  } else {
-    filtered.sort((a, b) => b.score - a.score || a.action.minutes - b.action.minutes);
-  }
-
-  const scored = filtered.slice(0, 8);
-
-  renderMatches(scored, timeLabel);
-
-  if (scored.length && window._civicMap) {
-    const uniqueOrgIds = [...new Set(scored.map((s) => s.org.id))];
+  if (matches.length && window._civicMap) {
+    const uniqueOrgIds = [...new Set(matches.map((s) => s.org.id))];
     const group = L.featureGroup(uniqueOrgIds.map((id) => window._civicMarkers[id]));
     window._civicMap.flyToBounds(group.getBounds().pad(0.3), { duration: 0.8 });
   }
@@ -152,37 +70,34 @@ function actionKey(org, action) {
   return `${org.id}-${action.id}`;
 }
 
-function renderMatches(scored, timeLabel) {
-  document.getElementById("match-count").textContent = scored.length
-    ? `${scored.length} match${scored.length === 1 ? "" : "es"}`
+function renderMatches(matches, cause, timeLabel) {
+  matches = matches.slice(0, 8);
+
+  document.getElementById("match-count").textContent = matches.length
+    ? `${matches.length} match${matches.length === 1 ? "" : "es"}`
     : "";
 
-  document.getElementById("we-heard").textContent = timeLabel
-    ? `We heard: under ${timeLabel}`
-    : "We heard: flexible on time";
+  const causeText = cause === "any" ? "any cause" : cause;
+  const timeText = timeLabel ? `under ${timeLabel}` : "any amount of time";
+  document.getElementById("we-heard").textContent = `We heard: ${causeText} · ${timeText}`;
 
   const divider = document.getElementById("time-divider");
   const dividerLabel = document.getElementById("time-divider-label");
-  if (timeLabel) {
-    dividerLabel.textContent = `If you've got ${timeLabel}`;
-    divider.hidden = false;
-  } else {
-    divider.hidden = true;
-  }
+  dividerLabel.textContent = timeLabel ? `If you've got ${timeLabel}` : "";
+  divider.hidden = !timeLabel;
 
   const results = document.getElementById("results");
   results.innerHTML = "";
 
-  if (scored.length === 0) {
+  if (matches.length === 0) {
     const note = document.createElement("p");
     note.className = "empty-note";
-    note.textContent =
-      'Try different words for who you want to help — e.g. "kids", "seniors", "animals", "immigrants" — or give yourself more time.';
+    note.textContent = "No matches for that combination yet — try a different cause or more time.";
     results.appendChild(note);
     return;
   }
 
-  scored.forEach(({ org, action }) => results.appendChild(actionCard(org, action)));
+  matches.forEach(({ org, action }) => results.appendChild(actionCard(org, action)));
 }
 
 function actionCard(org, action) {
@@ -322,6 +237,7 @@ function initMap() {
 // ---------- Wire up ----------
 
 document.addEventListener("DOMContentLoaded", () => {
+  populateCauseFilter();
   initMap();
   updateMyCount();
 
@@ -332,7 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".pill").forEach((pill) => {
     pill.addEventListener("click", () => {
-      document.getElementById("intent").value = pill.dataset.q;
+      document.getElementById("cause-filter").value = pill.dataset.cause;
+      document.getElementById("time-filter").value = pill.dataset.time;
       runMatch();
     });
   });
@@ -341,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => switchView(btn.dataset.view));
   });
 
-  // Demo default — mirrors the "I've got 2 minutes" example on load.
-  document.getElementById("intent").value = "I've got 2 minutes";
+  // Demo default on load — same combo as the "I've got 2 minutes" pill.
+  document.getElementById("time-filter").value = "2";
   runMatch();
 });
