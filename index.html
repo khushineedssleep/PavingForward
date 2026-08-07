@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chicago Civic Match — find a small task that needs you</title>
+<meta name="description" content="Tell us who you want to help and how much time you have. We'll match you with a small, real task from a Chicago nonprofit." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="mark">Civic<span>Match</span> Chicago</div>
+    <div class="tagline">A directory of small, real tasks — matched to your time</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Chicago needs are small.<br>So is the ask. <em>Find yours.</em></h1>
+    <p class="lede">
+      Nonprofits across the city have real, small tasks piling up — a translation, a delivery run,
+      a Saturday with kids. Tell us who you want to help and how much time you've got.
+    </p>
+
+    <form class="ledger-card" id="match-form">
+      <div class="field">
+        <label for="intent">Who do you want to help, and with what?</label>
+        <textarea id="intent" rows="3" placeholder="e.g. I want to help kids with reading, or work outdoors with plants"></textarea>
+      </div>
+      <div class="field">
+        <label for="time">How much time can you give?</label>
+        <select id="time">
+          <option value="15">15 minutes or less</option>
+          <option value="30">30 minutes or less</option>
+          <option value="60" selected>1 hour or less</option>
+          <option value="120">2 hours or less</option>
+          <option value="any">No limit — show everything</option>
+        </select>
+      </div>
+      <button type="submit" class="submit">Find my match</button>
+    </form>
+
+    <div id="results"></div>
+  </div>
+</section>
+
+<section class="map-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The Ledger</h2>
+      <div class="coord">41.8781° N, 87.6298° W — 50 orgs, 150 actions mapped</div>
+    </div>
+    <div id="map"></div>
+    <p class="map-hint">Hover or tap a pin to see what that organization is working on right now.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Demo build — organization data is illustrative. CivicMatch Chicago, 2026.
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
