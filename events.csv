@@ -1,0 +1,52 @@
+event_id,org_id,title,description,day_offset,start,end,duration_min,location,kind,signup_url
+1,ajh,Community Kitchen Dinner Service,Plate and serve the nightly hot meal in Rogers Park.,0,2026-08-07 16:30,2026-08-07 19:30,180,7649 N Paulina St,volunteer,https://example.org/signup
+2,gcfd,Saturday Morning Repack Session,Sort and box produce for pantries across Cook County. Closed-toe shoes required.,1,2026-08-08 09:00,2026-08-08 12:00,180,4100 W Ann Lurie Pl,volunteer,https://example.org/signup
+3,fru,Weekend Rescue Blitz,Extra drivers needed for surplus pickups citywide.,1,2026-08-08 10:00,2026-08-08 11:00,60,"Citywide, choose your route",volunteer,https://example.org/signup
+4,mow,Route Delivery Day,Deliver meals and a friendly check-in to homebound seniors.,1,2026-08-08 10:30,2026-08-08 12:30,120,Pickup: multiple sites,volunteer,https://example.org/signup
+5,votes,Voter Registration Pop-Up,Register new voters at the farmers market.,1,2026-08-08 08:00,2026-08-08 12:00,240,Wicker Park Farmers Market,event,https://example.org/signup
+6,ajh,Sunday Dinner Service,"Serve the evening meal, every single day of the year.",2,2026-08-09 16:30,2026-08-09 19:30,180,7649 N Paulina St,volunteer,https://example.org/signup
+7,paws,Dog Walking Orientation,Required intro before you can walk and socialize shelter dogs.,2,2026-08-09 11:00,2026-08-09 12:30,90,1997 N Clybourn Ave,training,https://example.org/signup
+8,nijc,Know Your Rights Training,Get trained to lead rights workshops in your own community.,3,2026-08-10 18:00,2026-08-10 20:00,120,Online,training,https://example.org/signup
+9,treehouse,Cat Socializing Hour,Sit with shy cats and help them learn to trust people.,3,2026-08-10 17:00,2026-08-10 18:00,60,7225 N Western Ave,volunteer,https://example.org/signup
+10,ref1,Welcome Team Orientation,Learn how apartment setups and airport welcomes work.,4,2026-08-11 18:00,2026-08-11 19:30,90,Online,training,https://example.org/signup
+11,hopes,Shelter Homework Lab,Tutor kids in reading and math right inside the shelter.,4,2026-08-11 16:00,2026-08-11 18:00,120,Address shared on signup,volunteer,https://example.org/signup
+12,votes,Text Bank Tuesday,Send get-out-the-vote texts together on a video call.,4,2026-08-11 18:30,2026-08-11 20:00,90,Online,volunteer,https://example.org/signup
+13,gcfd,Weekday Evening Repack,After-work shift on the warehouse floor.,5,2026-08-12 17:30,2026-08-12 20:00,150,4100 W Ann Lurie Pl,volunteer,https://example.org/signup
+14,openbooks,Story Time Volunteer Session,Read with young students during a literacy session.,5,2026-08-12 15:30,2026-08-12 17:00,90,651 W Lake St,volunteer,https://example.org/signup
+15,cara,Morning Motivations,Join the daily community circle and give a short motivational talk.,5,2026-08-12 08:30,2026-08-12 09:15,45,237 S Desplaines St,event,https://example.org/signup
+16,ref1,Apartment Setup Day,Furnish a home before a newly arriving family lands next week.,6,2026-08-13 10:00,2026-08-13 13:00,180,"Uptown, address on signup",volunteer,https://example.org/signup
+17,lbfe,Friendly Caller Training,Learn the ropes of weekly check-in calls with isolated elders.,6,2026-08-13 12:00,2026-08-13 13:00,60,Online,training,https://example.org/signup
+18,nightmin,Hygiene Kit Build Night,"Assemble kits with soap, socks, and essentials for street outreach.",6,2026-08-13 18:00,2026-08-13 20:00,120,1735 N Ashland Ave,volunteer,https://example.org/signup
+19,asm,Teen Showcase Judging Night,Score final projects as teens present their apprenticeship work.,7,2026-08-14 17:00,2026-08-14 19:30,150,66 E Randolph St,event,https://example.org/signup
+20,cch,Housing Advocacy Phone Bank,Call supporters ahead of the city budget hearing.,7,2026-08-14 17:30,2026-08-14 19:30,120,Online,advocacy,https://example.org/signup
+21,paws,Adoption Event: Fees Waived Weekend,Help staff the busiest adoption weekend of the summer.,8,2026-08-15 10:00,2026-08-15 16:00,360,1997 N Clybourn Ave,event,https://example.org/signup
+22,fotr,Riverbank Cleanup: North Branch,Pull trash and invasive plants. Gloves and tools provided.,8,2026-08-15 09:00,2026-08-15 12:00,180,"River Park, 5100 N Francisco Ave",volunteer,https://example.org/signup
+23,nijc,Citizenship Workshop Volunteer Day,Help staff a naturalization workshop. Non-attorneys needed too.,8,2026-08-15 09:00,2026-08-15 14:00,300,224 S Michigan Ave,volunteer,https://example.org/signup
+24,cara,Mock Interview Day,Coach job seekers through practice interviews.,9,2026-08-16 13:00,2026-08-16 16:00,180,237 S Desplaines St,volunteer,https://example.org/signup
+25,cgla,Expungement Clinic,Walk clients through record-clearing paperwork. Training on site.,10,2026-08-17 09:00,2026-08-17 13:00,240,"Legal Aid office, Loop",volunteer,https://example.org/signup
+26,erie,After-School Tutoring Kickoff,New tutor orientation for the fall term in West Town.,11,2026-08-18 17:30,2026-08-18 19:00,90,1347 W Erie St,training,https://example.org/signup
+27,cch,City Budget Hearing: Show Up,Pack the room when housing funding is on the docket.,12,2026-08-19 10:00,2026-08-19 13:00,180,"City Hall, 121 N LaSalle St",advocacy,https://example.org/signup
+28,fotr,Paddle & Patrol,Canoe cleanup crew on the main stem. Paddling experience helpful.,13,2026-08-20 09:30,2026-08-20 12:30,180,Clark Park Boathouse,volunteer,https://example.org/signup
+29,ajh,Community Kitchen Dinner Service,Plate and serve the nightly hot meal in Rogers Park.,14,2026-08-21 16:30,2026-08-21 19:30,180,7649 N Paulina St,volunteer,https://example.org/signup
+30,gcfd,Saturday Morning Repack Session,Sort and box produce for pantries across Cook County.,15,2026-08-22 09:00,2026-08-22 12:00,180,4100 W Ann Lurie Pl,volunteer,https://example.org/signup
+31,paws,Dog Walking Orientation,Required intro before you can walk and socialize shelter dogs.,16,2026-08-23 11:00,2026-08-23 12:30,90,1997 N Clybourn Ave,training,https://example.org/signup
+32,votes,Text Bank Tuesday,Send get-out-the-vote texts together on a video call.,18,2026-08-25 18:30,2026-08-25 20:00,90,Online,volunteer,https://example.org/signup
+33,hopes,Shelter Homework Lab,Tutor kids in reading and math right inside the shelter.,18,2026-08-25 16:00,2026-08-25 18:00,120,Address shared on signup,volunteer,https://example.org/signup
+34,nijc,Rights Workshop: Train the Trainer,Second session in the know-your-rights series.,19,2026-08-26 18:00,2026-08-26 20:00,120,Online,training,https://example.org/signup
+35,nightmin,Outreach Bus Ride-Along,Join the evening health outreach team and see the work up close.,20,2026-08-27 19:00,2026-08-27 22:00,180,Departs 1735 N Ashland Ave,volunteer,https://example.org/signup
+36,fotr,Riverbank Cleanup: South Branch,Gloves and tools provided. Families welcome.,22,2026-08-29 09:00,2026-08-29 12:00,180,Canal Origins Park,volunteer,https://example.org/signup
+37,mow,Route Delivery Day,Deliver meals and a friendly check-in to homebound seniors.,22,2026-08-29 10:30,2026-08-29 12:30,120,Pickup: multiple sites,volunteer,https://example.org/signup
+38,cch,Housing Town Hall,Hear directly from unhoused leaders and city officials. Bring questions.,23,2026-08-30 18:00,2026-08-30 20:00,120,Harold Washington Library,advocacy,https://example.org/signup
+39,erie,Citizenship Class Assist,Help adults prep for the naturalization test.,25,2026-09-01 18:00,2026-09-01 19:30,90,1347 W Erie St,volunteer,https://example.org/signup
+40,treehouse,Community Cats 101,Learn how the TNR program works and how to join a colony team.,26,2026-09-02 17:30,2026-09-02 19:00,90,7225 N Western Ave,training,https://example.org/signup
+41,cara,Morning Motivations,Join the daily community circle and give a short motivational talk.,27,2026-09-03 08:30,2026-09-03 09:15,45,237 S Desplaines St,event,https://example.org/signup
+42,openbooks,Fall Book Drive Sorting Day,Process the season's biggest donation haul.,29,2026-09-05 10:00,2026-09-05 14:00,240,651 W Lake St,volunteer,https://example.org/signup
+43,ref1,World Refugee Community Dinner,Share a meal cooked by newly arrived families. Tickets support resettlement.,30,2026-09-06 18:00,2026-09-06 20:30,150,"Uptown, address on signup",event,https://example.org/signup
+44,gcfd,Hunger Action Phone Bank,Call Cook County residents about SNAP renewal deadlines.,32,2026-09-08 17:30,2026-09-08 19:30,120,Online,advocacy,https://example.org/signup
+45,asm,Fall Program Mentor Kickoff,Meet your teen apprentice cohort for the fall term.,33,2026-09-09 17:00,2026-09-09 19:00,120,66 E Randolph St,training,https://example.org/signup
+46,lbfe,Birthday Brigade,"Celebrate elders' birthdays with cake, cards, and company.",35,2026-09-11 14:00,2026-09-11 16:00,120,"Bucktown, address on signup",event,https://example.org/signup
+47,cgla,Expungement Clinic,Walk clients through record-clearing paperwork. Training on site.,36,2026-09-12 09:00,2026-09-12 13:00,240,"Legal Aid office, Loop",volunteer,https://example.org/signup
+48,paws,Fall Adoption Fair,Help staff the big outdoor adoption event.,36,2026-09-12 10:00,2026-09-12 15:00,300,1997 N Clybourn Ave,event,https://example.org/signup
+49,votes,Voter Reg Deadline Push,Last-week registration sprint. Tables all over the city.,38,2026-09-14 09:00,2026-09-14 15:00,360,Citywide,advocacy,https://example.org/signup
+50,fru,Thanksgiving Surge Prep,Extra rescue routes as holiday demand climbs.,40,2026-09-16 10:00,2026-09-16 11:00,60,"Citywide, choose your route",volunteer,https://example.org/signup
+51,ajh,Community Kitchen Dinner Service,Plate and serve the nightly hot meal in Rogers Park.,41,2026-09-17 16:30,2026-09-17 19:30,180,7649 N Paulina St,volunteer,https://example.org/signup
