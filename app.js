@@ -7,6 +7,7 @@
  */
 
 const STORAGE_KEY = "suc_my_actions";
+const STORAGE_KEY_EVENTS = "suc_my_events";
 
 const ACTIONS = ORGS.flatMap((org) =>
   org.actions.map((action) => ({ org, action }))
@@ -185,38 +186,102 @@ function toggleSaved(org, action) {
 }
 
 function updateMyCount() {
-  document.getElementById("my-count").textContent = getSaved().length;
+  document.getElementById("my-count").textContent = getSaved().length + getSavedEvents().length;
+}
+
+// ---------- My Events (localStorage) ----------
+
+function getSavedEvents() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_EVENTS);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function setSavedEvents(list) {
+  try {
+    localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(list));
+  } catch {
+    // storage unavailable — fail quietly
+  }
+}
+
+function isEventSaved(id) {
+  return getSavedEvents().includes(id);
+}
+
+function toggleSavedEvent(id) {
+  const list = getSavedEvents();
+  const idx = list.indexOf(id);
+  if (idx === -1) list.push(id);
+  else list.splice(idx, 1);
+  setSavedEvents(list);
+  return list.includes(id);
 }
 
 function renderMyActions() {
-  const list = getSaved();
+  const savedActionKeys = getSaved();
+  const savedEventIds = getSavedEvents();
   const container = document.getElementById("my-actions-list");
   container.innerHTML = "";
 
-  if (list.length === 0) {
-    container.innerHTML = `<p class="my-actions-empty">You haven't added anything yet. Head to <strong>Find actions</strong> and tap "I'm in" on something.</p>`;
+  if (savedActionKeys.length === 0 && savedEventIds.length === 0) {
+    container.innerHTML = `<p class="my-actions-empty">You haven't added anything yet. Head to <strong>Find actions</strong> or <strong>Events</strong> and tap "I'm in" on something.</p>`;
     return;
   }
 
-  list.forEach((key) => {
-    const [orgId, actionId] = key.split("-").map(Number);
-    const org = ORGS.find((o) => o.id === orgId);
-    if (!org) return;
-    const action = org.actions.find((a) => a.id === actionId);
-    if (!action) return;
-    container.appendChild(actionCard(org, action));
-  });
+  if (savedEventIds.length > 0) {
+    const head = document.createElement("div");
+    head.className = "dayhead";
+    head.innerHTML = `<span class="d">Events you're going to</span><span class="rule"></span>`;
+    container.appendChild(head);
+
+    const list = document.createElement("div");
+    list.innerHTML = savedEventIds
+      .map((id) => EVENTS.find((e) => e.id === id))
+      .filter(Boolean)
+      .map((e) => ({ ...e, dt: evDate(e) }))
+      .sort((a, b) => a.dt - b.dt)
+      .map(evRowHtml)
+      .join("");
+    container.appendChild(list);
+  }
+
+  if (savedActionKeys.length > 0) {
+    if (savedEventIds.length > 0) {
+      const head = document.createElement("div");
+      head.className = "dayhead";
+      head.innerHTML = `<span class="d">Actions you've saved</span><span class="rule"></span>`;
+      container.appendChild(head);
+    }
+
+    const grid = document.createElement("div");
+    grid.className = "results-grid";
+    savedActionKeys.forEach((key) => {
+      const [orgId, actionId] = key.split("-").map(Number);
+      const org = ORGS.find((o) => o.id === orgId);
+      if (!org) return;
+      const action = org.actions.find((a) => a.id === actionId);
+      if (!action) return;
+      grid.appendChild(actionCard(org, action));
+    });
+    container.appendChild(grid);
+  }
 }
 
 // ---------- Tabs ----------
 
 function switchView(view) {
   document.getElementById("view-find").hidden = view !== "find";
+  document.getElementById("view-events").hidden = view !== "events";
   document.getElementById("view-my").hidden = view !== "my";
   document.querySelectorAll(".tab-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.view === view);
   });
   if (view === "my") renderMyActions();
+  if (view === "events") renderEvents();
 }
 
 // ---------- Map ----------
@@ -307,4 +372,212 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function clearActivePill() {
   document.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
+}
+
+// ============================================================
+// Events tab (calendar module)
+// EVENTS comes from events.js (generated from events.csv). Each event's
+// orgId already matches an id in ORGS — see EVENT_ORG_CODES in
+// convert.py for how the CSV's short org codes were resolved.
+// off = days from "today" at page-load time, so the calendar is always
+// current whenever the page is opened, with no stale hardcoded dates.
+// ============================================================
+
+let evFilter = "all";
+let evView = "list";
+let calMonth = null; // {y, m} currently shown in the calendar view
+let calSel = null; // "y-m-d" of the selected day, or null
+
+function evDate(e) {
+  const dt = new Date();
+  dt.setHours(e.h, e.m, 0, 0);
+  dt.setDate(dt.getDate() + e.off);
+  return dt;
+}
+function dayLabel(off, dt) {
+  if (off === 0) return "Today";
+  if (off === 1) return "Tomorrow";
+  return dt.toLocaleDateString([], { weekday: "long", month: "short", day: "numeric" });
+}
+function fmtT(dt) {
+  return dt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+}
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
+
+// Opens an org's "profile" — this site's map popup — and switches to
+// the Find Actions tab to show it. Called from event cards' org links.
+function onOrgClick(orgId) {
+  switchView("find");
+  document.querySelectorAll('.tab-btn[data-view="find"]').forEach((b) => b.classList.add("active"));
+  document.querySelectorAll('.tab-btn:not([data-view="find"])').forEach((b) => b.classList.remove("active"));
+
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  const marker = window._civicMarkers && window._civicMarkers[orgId];
+  if (marker && window._civicMap) {
+    window._civicMap.flyTo(marker.getLatLng(), 14, { duration: 0.8 });
+    setTimeout(() => marker.openPopup(), 450);
+  }
+}
+
+// Extensibility hook — fires once when someone marks an event "I'm in".
+// Saving itself already happens in markEv()/toggleSavedEvent(); this is
+// just a seam for adding analytics later without touching that logic.
+function onEventJoined(evt) {
+  console.log("Event joined:", evt.t);
+}
+
+function renderEvents() {
+  const el = document.getElementById("evContent");
+  const kinds = [
+    ["all", "Everything"],
+    ["volunteer", "Volunteer"],
+    ["advocacy", "Advocacy"],
+    ["training", "Trainings"],
+    ["event", "Events"]
+  ];
+  let html = `<h1>On the calendar</h1>
+  <p class="sub">Real ways to show up. Tap an org for their page, tap "I'm in" and it counts on your record.</p>
+  <div class="evtoggle">
+    <button class="${evView === "list" ? "on" : ""}" onclick="evView='list';renderEvents()">List</button>
+    <button class="${evView === "cal" ? "on" : ""}" onclick="evView='cal';renderEvents()">Calendar</button>
+  </div>
+  <div class="evfilters">`;
+  for (const [k, label] of kinds) {
+    html += `<button class="chip ${evFilter === k ? "on" : ""}" onclick="evFilter='${k}';renderEvents()">${label}</button>`;
+  }
+  html += `</div>`;
+  const rows = EVENTS.filter((e) => evFilter === "all" || e.kind === evFilter)
+    .map((e) => ({ ...e, dt: evDate(e) }))
+    .sort((a, b) => a.dt - b.dt);
+  html += evView === "cal" ? calHtml(rows) : listHtml(rows);
+  el.innerHTML = html;
+}
+
+function evRowHtml(e) {
+  const org = ORGS.find((o) => o.id === e.orgId);
+  const name = org ? org.name : "Unknown org";
+  const endDt = new Date(e.dt.getTime() + e.dur * 60000);
+  const saved = isEventSaved(e.id);
+  const link = e.signup && e.signup.trim() ? e.signup : org ? orgWebsite(org) : "#";
+  return `<div class="evitem">
+    <div class="evtime"><div class="t1">${fmtT(e.dt)}</div><div class="t2">to ${fmtT(endDt)}</div></div>
+    <div class="evbody">
+      <h3>${esc(e.t)}</h3>
+      <div class="desc">${esc(e.d)}</div>
+      <div class="evmeta"><span class="kindtag ${e.kind}">${e.kind}</span><button class="orglink" onclick="onOrgClick(${e.orgId})">${esc(name)}</button><span class="loc">· ${esc(e.loc)}</span></div>
+    </div>
+    <div class="evside">
+      <button class="go ${saved ? "done" : ""}" onclick="markEv(${e.id},this)">${saved ? "Going \u2713" : "I'm in"}</button>
+      <a class="go" href="${link}" target="_blank" rel="noopener">Sign up &#8599;</a>
+    </div>
+  </div>`;
+}
+
+function markEv(id, btn) {
+  const nowSaved = toggleSavedEvent(id);
+  btn.classList.toggle("done", nowSaved);
+  btn.textContent = nowSaved ? "Going \u2713" : "I'm in";
+  updateMyCount();
+  if (nowSaved) {
+    const evt = EVENTS.find((e) => e.id === id);
+    if (evt) onEventJoined(evt);
+  }
+  if (document.getElementById("view-my").hidden === false) renderMyActions();
+}
+
+function listHtml(rows) {
+  if (!rows.length) {
+    return `<div class="evempty"><b>Nothing in this category right now.</b><br>Check Everything, or search for a remote action instead.</div>`;
+  }
+  let html = "",
+    lastOff = null;
+  for (const e of rows) {
+    if (e.off !== lastOff) {
+      lastOff = e.off;
+      const lbl = dayLabel(e.off, e.dt);
+      html += `<div class="dayhead"><span class="d">${e.off <= 1 ? `<em>${lbl}</em>` : lbl}</span><span class="rule"></span></div>`;
+    }
+    html += evRowHtml(e);
+  }
+  return html;
+}
+
+function dKey(dt) {
+  return dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate();
+}
+function calShift(dm) {
+  calMonth.m += dm;
+  if (calMonth.m < 0) {
+    calMonth.m = 11;
+    calMonth.y--;
+  }
+  if (calMonth.m > 11) {
+    calMonth.m = 0;
+    calMonth.y++;
+  }
+  calSel = null;
+  renderEvents();
+}
+function calPick(key) {
+  calSel = calSel === key ? null : key;
+  renderEvents();
+  setTimeout(() => {
+    const s = document.getElementById("selday");
+    if (s) s.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, 50);
+}
+
+function calHtml(rows) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  if (!calMonth) calMonth = { y: today.getFullYear(), m: today.getMonth() };
+  const byDay = {};
+  for (const e of rows) {
+    (byDay[dKey(e.dt)] = byDay[dKey(e.dt)] || []).push(e);
+  }
+  const first = new Date(calMonth.y, calMonth.m, 1);
+  const startDow = first.getDay();
+  const mname = first.toLocaleDateString([], { month: "long", year: "numeric" });
+  let html = `<div class="calhead">
+    <button onclick="calShift(-1)" aria-label="Previous month">‹</button>
+    <span class="mname">${mname}</span>
+    <button onclick="calShift(1)" aria-label="Next month">›</button>
+  </div><div class="calgrid">`;
+  for (const d of ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]) html += `<span class="dow">${d}</span>`;
+  const cells = 42;
+  for (let i = 0; i < cells; i++) {
+    const dt = new Date(calMonth.y, calMonth.m, 1 - startDow + i);
+    const inMonth = dt.getMonth() === calMonth.m;
+    const key = dKey(dt);
+    const evs = byDay[key] || [];
+    const isToday = dt.getTime() === today.getTime();
+    const cls = ["calcell", inMonth ? "" : "out", evs.length ? "hasev" : "", isToday ? "today" : "", calSel === key ? "sel" : ""]
+      .filter(Boolean)
+      .join(" ");
+    html += `<div class="${cls}" ${evs.length ? `onclick="calPick('${key}')" role="button" tabindex="0" aria-label="${evs.length} events"` : ""}>
+      <span class="dnum">${dt.getDate()}</span>`;
+    for (const e of evs.slice(0, 2)) html += `<span class="calchip ${e.kind}">${esc(e.t)}</span>`;
+    if (evs.length > 2) html += `<span class="calmore">+${evs.length - 2} more</span>`;
+    if (evs.length) {
+      html += `<span class="caldots">`;
+      for (const e of evs.slice(0, 4)) html += `<span class="caldot ${e.kind}"></span>`;
+      html += `</span>`;
+    }
+    html += `</div>`;
+  }
+  html += `</div>`;
+  if (calSel && byDay[calSel]) {
+    const evs = byDay[calSel];
+    const dt = evs[0].dt;
+    html += `<div class="seldaywrap" id="selday"><div class="dayhead"><span class="d"><em>${dt.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric" })}</em></span><span class="rule"></span></div>`;
+    for (const e of evs) html += evRowHtml(e);
+    html += `</div>`;
+  } else {
+    html += `<div class="seldaywrap"><p class="sub" style="margin-top:14px">Tap a day with events to see the lineup.</p></div>`;
+  }
+  return html;
 }
