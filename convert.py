@@ -24,11 +24,37 @@ NEIGHBORHOOD_COORDS = {
     "Chicagoland": (41.8836, -87.6324),  # fallback: downtown, jittered per org below
 }
 
+# events.csv identifies orgs by short code (gcfd, ajh, ...) rather than the
+# numeric org_id organizations.csv uses. Map each code to the real org_id
+# once here so events.js can reference the same ORGS your whole site uses
+# — no second, parallel org-name lookup to keep in sync.
+EVENT_ORG_CODES = {
+    "gcfd": "Greater Chicago Food Depository",
+    "ajh": "A Just Harvest",
+    "fru": "Food Rescue US - Chicago",
+    "ref1": "RefugeeOne",
+    "nijc": "National Immigrant Justice Center",
+    "erie": "Erie Neighborhood House",
+    "hopes": "Chicago HOPES for Kids",
+    "openbooks": "Open Books",
+    "asm": "After School Matters",
+    "paws": "PAWS Chicago",
+    "treehouse": "Tree House Humane Society",
+    "lbfe": "Little Brothers - Friends of the Elderly",
+    "mow": "Meals on Wheels Chicago",
+    "cara": "Cara Collective",
+    "cgla": "Cabrini Green Legal Aid",
+    "votes": "Chicago Votes",
+    "cch": "Chicago Coalition for the Homeless",
+    "nightmin": "The Night Ministry",
+    "fotr": "Friends of the Chicago River",
+}
+
 random.seed(42)
 
-with open('/mnt/user-data/uploads/organizations.csv') as f:
+with open('organizations.csv') as f:
     orgs = list(csv.DictReader(f))
-with open('/mnt/user-data/uploads/actions.csv') as f:
+with open('actions.csv') as f:
     actions = list(csv.DictReader(f))
 
 actions_by_org = {}
@@ -45,6 +71,7 @@ for a in actions:
     })
 
 out = []
+name_to_id = {}
 for o in orgs:
     n = o['neighborhood']
     lat, lng = NEIGHBORHOOD_COORDS[n]
@@ -53,8 +80,10 @@ for o in orgs:
         # small deterministic jitter so multi-site orgs don't stack exactly
         lat += random.uniform(-0.045, 0.045)
         lng += random.uniform(-0.05, 0.05)
+    org_id = int(o['org_id'])
+    name_to_id[o['org_name']] = org_id
     out.append({
-        "id": int(o['org_id']),
+        "id": org_id,
         "name": o['org_name'],
         "description": o['description'],
         "whoTheyServe": o['who_they_serve'],
@@ -88,3 +117,59 @@ const ORGS = ''')
 
 print("orgs:", len(out))
 print("total actions:", sum(len(o['actions']) for o in out))
+
+# ---------------------------------------------------------------------
+# events.js — built the same way from events.csv, if present
+# ---------------------------------------------------------------------
+try:
+    with open('events.csv') as f:
+        events = list(csv.DictReader(f))
+except FileNotFoundError:
+    events = None
+
+if events is not None:
+    ev_out = []
+    for e in events:
+        code = e['org_id']
+        org_name = EVENT_ORG_CODES.get(code)
+        org_id = name_to_id.get(org_name) if org_name else None
+        if org_id is None:
+            # Don't fail the whole build over one bad row — skip it and
+            # say exactly which row/code needs a fix.
+            print(f"WARNING: events.csv row {e['event_id']} has org_id "
+                  f"'{code}' with no match in EVENT_ORG_CODES / organizations.csv "
+                  f"— skipping this event. Add it to EVENT_ORG_CODES in convert.py.")
+            continue
+
+        start_h, start_m = (int(x) for x in e['start'].split(' ')[1].split(':')[:2])
+        ev_out.append({
+            "id": int(e['event_id']),
+            "orgId": org_id,
+            "t": e['title'],
+            "d": e['description'],
+            "off": int(e['day_offset']),
+            "h": start_h,
+            "m": start_m,
+            "dur": int(e['duration_min']),
+            "loc": e['location'],
+            "kind": e['kind'],
+            "signup": (e.get('signup_url') or '').strip(),
+        })
+
+    with open('events.js', 'w') as f:
+        f.write('''/**
+ * events.js — Chicago Civic Match calendar dataset
+ * ------------------------------------------------
+ * GENERATED FILE — do not hand-edit. Edit events.csv and re-run
+ * `python3 convert.py` instead.
+ *
+ * off = days from "today" at page-load time (0 = today), so the demo
+ * calendar never goes stale. orgId matches an id in ORGS (data.js) —
+ * see EVENT_ORG_CODES in convert.py for the short-code mapping.
+ */
+
+const EVENTS = ''')
+        json.dump(ev_out, f, indent=2)
+        f.write(';\n')
+
+    print("events:", len(ev_out))
